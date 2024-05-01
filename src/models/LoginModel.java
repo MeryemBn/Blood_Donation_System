@@ -6,7 +6,7 @@ import models.DBConnection;
 
 import javax.swing.JOptionPane;
 
-public class loginModel {
+public class LoginModel {
      static {
         try {
             // Load the MySQL JDBC driver
@@ -48,5 +48,29 @@ public class loginModel {
             ex.printStackTrace();
         }
         return false;
+    }
+    
+    public int getDonorId(String username, String password) {
+        try {
+            Connection connection = DBConnection.getConnection();
+            if (connection != null) {
+                String query = "SELECT id FROM donneur WHERE username = ? AND password = ?";
+                try (PreparedStatement statement = connection.prepareStatement(query)) {
+                    statement.setString(1, username);
+                    statement.setString(2, password);
+
+                    try (ResultSet resultSet = statement.executeQuery()) {
+                        if (resultSet.next()) {
+                            return resultSet.getInt("id");
+                        }
+                    }
+                }
+            } else {
+                System.out.println("Failed to establish database connection.");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return -1; // Return -1 if no matching donor is found
     }
 }

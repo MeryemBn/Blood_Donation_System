@@ -1,25 +1,23 @@
 package application;
 
-import views.login;
+import views.Login;
 import views.DonorView;
-import models.loginModel;
+import models.LoginModel;
 import models.DonorModel;
-import controllers.loginController;
+import controllers.LoginController;
 import controllers.DonorController;
 
-public class main {
+public class Main {
     public static void main(String[] args) {
         // Create the login model
-        loginModel loginModel = new loginModel();
-
+        LoginModel loginModel = new LoginModel();
 
         // Create the login view
-        login loginView = new login();
+        Login loginView = new Login();
 
         // Create the login controller
-        loginController loginController = new loginController(loginView, loginModel);
+        LoginController loginController = new LoginController(loginView, loginModel);
 
-        // Create the donor controller
         // Display the login view
         loginView.setVisible(true);   
     }

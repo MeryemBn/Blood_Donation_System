@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class login extends JFrame {
+public class Login extends JFrame {
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JButton loginButton;
@@ -12,7 +12,7 @@ public class login extends JFrame {
     private JRadioButton adminRadioButton;
     private JButton closeButton;
 
-    public login() {
+    public Login() {
         setTitle("Login");
         setSize(766, 468);
         setUndecorated(true); // Remove frame title bar
@@ -25,7 +25,7 @@ public class login extends JFrame {
 
         closeButton = new JButton("X");
         closeButton.setBounds(707, 0, 59, 54);
-        closeButton.setFont(new Font("Arial", Font.BOLD, 16));
+        closeButton.setFont(new Font("Arial", Font.PLAIN, 16));
         closeButton.setForeground(Color.WHITE);
         closeButton.setBorder(BorderFactory.createEmptyBorder());
         closeButton.setContentAreaFilled(false);

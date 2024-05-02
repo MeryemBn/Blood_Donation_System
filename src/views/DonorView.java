@@ -35,13 +35,13 @@ public class DonorView extends JFrame {
 	private JPanel tabPanel2;
 	private JButton logoutButton;
 	
-	
+	private HomeView homeView;
 	private PriseRendezVousVue donationsAppointmentView;
 	private PriseRendezVousControleur controleur;
 	
 	private DonationsHistoryView donationsHistoryView;
 	
-	public DonorView() {
+	public DonorView(String username) {
 		frame = new JFrame("Accueil Donneur");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setUndecorated(true);
@@ -120,8 +120,8 @@ public class DonorView extends JFrame {
 		tabPanel1 = createTabPanel(Color.WHITE);
 		tabPanel2 = createTabPanel(Color.BLUE);
 		
-
-        tabbedPane.addTab("1", tabPanel1);
+		homeView =new HomeView(username);
+        tabbedPane.addTab("1",null,homeView.getMainPanel(),null);
       
         controleur= new PriseRendezVousControleur();
         donationsAppointmentView = new PriseRendezVousVue(controleur);

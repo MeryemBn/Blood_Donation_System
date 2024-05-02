@@ -3,8 +3,11 @@ package controllers;
 
 
 import models.LoginModel;
+
 import views.Login;
 import views.DonorView;
+import views.AdminView;
+import models.AdminModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -48,16 +51,19 @@ public class LoginController implements ActionListener {
 			}
 
 			if (model.authenticateUser(username, password, userType)) {
-				
-                donorId = model.getDonorId(username, password);
-
-				JOptionPane.showMessageDialog(loginview, "Login successful!");
-				loginview.setVisible(false);
-				DonorView donorView = new DonorView();
-				
-				DonorController donorController = new DonorController(donorView);// Show the donorView upon
-																								// successful login
-			} else {
+                JOptionPane.showMessageDialog(loginview, "Login successful!");
+                loginview.setVisible(false);
+                if (userType.equals("Admin")) {
+                    // If admin login is successful, create AdminView and AdminController
+                    AdminView adminView = new AdminView();
+                    AdminModel adminModel = new AdminModel();
+                    AdminController adminController = new AdminController(adminView, adminModel);
+                } else if (userType.equals("Donor")) {
+                    // If donor login is successful, create DonorView and DonorController
+                    DonorView donorView = new DonorView(username);
+                    DonorController donorController = new DonorController(donorView);
+                }
+                } else {
 				JOptionPane.showMessageDialog(loginview, "Invalid username or password. Please try again.");
 				// Clear fields or handle login failure
 			}

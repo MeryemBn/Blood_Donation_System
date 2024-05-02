@@ -1,7 +1,8 @@
 package controllers;
 
 import models.DonationsHistoryModel;
-import models.DonorModel;
+
+
 import models.LoginModel;
 import views.Login;
 import views.DonationsHistoryView;
@@ -13,14 +14,16 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
+import controllers.PriseRendezVousControleur;
+
 public class DonorController implements ActionListener {
 	private DonorView donorview;
-	private DonorModel model;
+	
 	private Login loginview;
 
 
-	public DonorController(DonorView view, DonorModel model) {
-		this.model = model;
+	public DonorController(DonorView view) {
+		
 		this.donorview = view;
 
 		// Add action listeners to view components
@@ -43,6 +46,8 @@ public class DonorController implements ActionListener {
 			donorview.buttonClicked(donorview.getButton2());
 			donorview.buttonReleased(donorview.getButton1());
 			donorview.buttonReleased(donorview.getButton3());
+			 PriseRendezVousControleur controleur = new PriseRendezVousControleur();
+			 
 		} else if (e.getSource() == donorview.getButton3()) {
 			donorview.getTabbedPane().setSelectedIndex(2); // Afficher le troisième onglet
 			donorview.buttonClicked(donorview.getButton3());

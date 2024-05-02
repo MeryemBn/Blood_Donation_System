@@ -6,7 +6,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-
+import views.PriseRendezVousVue;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
+import controllers.PriseRendezVousControleur;
 
 public class DonorView extends JFrame {
 	private JFrame frame;
@@ -33,6 +34,10 @@ public class DonorView extends JFrame {
 	private JPanel tabPanel1;
 	private JPanel tabPanel2;
 	private JButton logoutButton;
+	
+	
+	private PriseRendezVousVue donationsAppointmentView;
+	private PriseRendezVousControleur controleur;
 	
 	private DonationsHistoryView donationsHistoryView;
 	
@@ -117,10 +122,17 @@ public class DonorView extends JFrame {
 		
 
         tabbedPane.addTab("1", tabPanel1);
-        tabbedPane.addTab("2", tabPanel2);
+      
+        controleur= new PriseRendezVousControleur();
+        donationsAppointmentView = new PriseRendezVousVue(controleur);
+        tabbedPane.addTab("2", null, donationsAppointmentView.getMainPanel(), null);
+        
         
         donationsHistoryView = new DonationsHistoryView();
         tabbedPane.addTab("3", null, donationsHistoryView.getMainPanel(), null);
+        
+        
+		
 		
 		// Hide the default navigation buttons
 		for (int i = 0; i < tabbedPane.getTabCount(); i++) {

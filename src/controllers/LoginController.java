@@ -1,6 +1,7 @@
 package controllers;
 
-import models.DonorModel;
+
+
 import models.LoginModel;
 import views.Login;
 import views.DonorView;
@@ -53,8 +54,8 @@ public class LoginController implements ActionListener {
 				JOptionPane.showMessageDialog(loginview, "Login successful!");
 				loginview.setVisible(false);
 				DonorView donorView = new DonorView();
-				DonorModel donorModel = new DonorModel();
-				DonorController donorController = new DonorController(donorView, donorModel);// Show the donorView upon
+				
+				DonorController donorController = new DonorController(donorView);// Show the donorView upon
 																								// successful login
 			} else {
 				JOptionPane.showMessageDialog(loginview, "Invalid username or password. Please try again.");

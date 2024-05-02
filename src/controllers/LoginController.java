@@ -1,7 +1,5 @@
 package controllers;
 
-
-
 import models.LoginModel;
 
 import views.Login;
@@ -18,7 +16,7 @@ public class LoginController implements ActionListener {
 	private LoginModel model;
 	private DonorView donorView;
 	public static int donorId;
-	
+
 	public LoginController(Login view, LoginModel model) {
 		this.loginview = view;
 		this.model = model;
@@ -51,25 +49,31 @@ public class LoginController implements ActionListener {
 			}
 
 			if (model.authenticateUser(username, password, userType)) {
-                JOptionPane.showMessageDialog(loginview, "Login successful!");
-                loginview.setVisible(false);
-                if (userType.equals("Admin")) {
-                    // If admin login is successful, create AdminView and AdminController
-                    AdminView adminView = new AdminView();
-                    AdminModel adminModel = new AdminModel();
-                    AdminController adminController = new AdminController(adminView, adminModel);
-                } else if (userType.equals("Donor")) {
-                    // If donor login is successful, create DonorView and DonorController
-                    DonorView donorView = new DonorView(username);
-                    DonorController donorController = new DonorController(donorView);
-                }
-                } else {
-				JOptionPane.showMessageDialog(loginview, "Invalid username or password. Please try again.");
-				// Clear fields or handle login failure
+
+				JOptionPane.showMessageDialog(loginview, "Login successful!");
+				loginview.setVisible(false);
+				if (userType.equals("Admin")) {
+
+					// If admin login is successful, create AdminView and AdminController
+					AdminView adminView = new AdminView();
+					AdminModel adminModel = new AdminModel();
+					AdminController adminController = new AdminController(adminView, adminModel);
+
+				} else if (userType.equals("Donor")) {
+
+					// If donor login is successful, create DonorView and DonorController
+					donorId = model.getDonorId(username, password);
+					DonorView donorView = new DonorView(username);
+					DonorController donorController = new DonorController(donorView);
+
+				} else {
+					JOptionPane.showMessageDialog(loginview, "Invalid username or password. Please try again.");
+					// Clear fields or handle login failure
+				}
+			}else if (e.getSource() == loginview.getCloseButton()) {
+				// Close button action
+				loginview.dispose(); // Close the login window
 			}
-		} else if (e.getSource() == loginview.getCloseButton()) {
-			// Close button action
-			loginview.dispose(); // Close the login window
 		}
 	}
 }

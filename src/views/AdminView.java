@@ -56,8 +56,9 @@ public class AdminView extends JFrame {
         titlePanel.setPreferredSize(new Dimension(1100,45));
         
         titleLabel = new JLabel("Blood Donation System");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 22));
+        titleLabel.setFont(new Font("Arial", Font.PLAIN, 22));
         titleLabel.setForeground(Color.WHITE);
+		titleLabel.setBorder(new EmptyBorder(6, 0, 0, 0)); 
 
         // Ajouter le label au centre du titlePanel
         titlePanel.add(titleLabel);
@@ -66,7 +67,7 @@ public class AdminView extends JFrame {
 
         // Add a close button to the title bar
         closeButton = new JButton("X");
-        closeButton.setFont(new Font("Arial", Font.BOLD, 16));
+        closeButton.setFont(new Font("Arial", Font.PLAIN, 16));
         closeButton.setForeground(Color.WHITE);
         closeButton.setBorder(BorderFactory.createEmptyBorder());
         closeButton.setContentAreaFilled(false);

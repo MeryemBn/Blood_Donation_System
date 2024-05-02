@@ -25,9 +25,9 @@ public class DonationsHistoryView extends JFrame {
 	private JTable donationTable;
 	private DefaultTableModel tableModel;
 	private JPanel mainPanel;
+
 	public DonationsHistoryView() {
 		super("Donation History");
-
 		mainPanel = new JPanel(new GridBagLayout());
 		mainPanel.setBackground(new Color(255, 255, 255));
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -36,11 +36,24 @@ public class DonationsHistoryView extends JFrame {
 		JPanel titlePanel = new JPanel(new BorderLayout());
 		JLabel titleLabel = new JLabel("Donation History");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setFont(new Font("Times New Roman", Font.BOLD, 30));
+		titleLabel.setFont(new Font("Times New Roman", Font.BOLD, 40));
 		titleLabel.setForeground(new Color(63, 81, 181));
 		titleLabel.setBackground(Color.WHITE);
 		titleLabel.setOpaque(true);
+		titleLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 40, 0));
 		titlePanel.add(titleLabel, BorderLayout.NORTH);
+
+		// Quote label
+		JLabel quoteLabel = new JLabel(
+				"<html><div style='text-align: center;'>\"Thank you for your generous donations,<br>they are truly appreciated.\"</div></html>");
+
+		quoteLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		quoteLabel.setFont(new Font("Bell MT", Font.ITALIC, 25));
+		quoteLabel.setForeground(Color.red);
+		quoteLabel.setBackground(Color.WHITE);
+		quoteLabel.setOpaque(true);
+		quoteLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		titlePanel.add(quoteLabel, BorderLayout.SOUTH);
 
 		GridBagConstraints gbcTitle = new GridBagConstraints();
 		gbcTitle.gridx = 0;
@@ -80,7 +93,7 @@ public class DonationsHistoryView extends JFrame {
 				Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 				c.setBackground(new Color(63, 81, 181));
 				c.setForeground(Color.WHITE);
-				c.setFont(new Font("Arial", Font.PLAIN, 17));
+				c.setFont(new Font("Arial", Font.PLAIN, 20));
 				return c;
 			}
 		});
@@ -100,13 +113,13 @@ public class DonationsHistoryView extends JFrame {
 		getContentPane().add(mainPanel, BorderLayout.CENTER);
 
 	}
-	
+
 	public JPanel getMainPanel() {
-        return mainPanel;
-    }
-	
+		return mainPanel;
+	}
+
 	public void updateView(List<DonationHistory> donationHistory) {
-		tableModel.setRowCount(0); 
+		tableModel.setRowCount(0);
 
 		int count = 1;
 		for (DonationHistory donation : donationHistory) {
@@ -115,5 +128,5 @@ public class DonationsHistoryView extends JFrame {
 			tableModel.addRow(rowData);
 		}
 	}
-	
+
 }

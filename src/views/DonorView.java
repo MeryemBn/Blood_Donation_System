@@ -6,7 +6,6 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import views.PriseRendezVousVue;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -30,9 +29,6 @@ public class DonorView extends JFrame {
 	private JLabel titleLabel;
 	private JPanel titlePanel;
 	private JPanel menuPanel;
-	private JLabel menuLabel;
-	private JPanel tabPanel1;
-	private JPanel tabPanel2;
 	private JButton logoutButton;
 	
 	private HomeView homeView;
@@ -56,7 +52,7 @@ public class DonorView extends JFrame {
 		titleLabel = new JLabel("Blood Donation System");
 		titleLabel.setFont(new Font("Arial", Font.PLAIN, 22));
 		titleLabel.setForeground(Color.WHITE);
-		titleLabel.setBorder(new EmptyBorder(6, 0, 0, 0)); // Top margin of 20 pixels
+		titleLabel.setBorder(new EmptyBorder(6, 0, 0, 0)); 
 
 		// Ajouter le label au centre du titlePanel
 		titlePanel.add(titleLabel);
@@ -117,8 +113,6 @@ public class DonorView extends JFrame {
 		tabbedPane = new JTabbedPane();
 		tabbedPane.setBorder(BorderFactory.createEmptyBorder(-9, -2, -2, -2));
 		
-		tabPanel1 = createTabPanel(Color.WHITE);
-		tabPanel2 = createTabPanel(Color.BLUE);
 		
 		homeView =new HomeView(username);
         tabbedPane.addTab("1",null,homeView.getMainPanel(),null);
@@ -131,8 +125,6 @@ public class DonorView extends JFrame {
         donationsHistoryView = new DonationsHistoryView();
         tabbedPane.addTab("3", null, donationsHistoryView.getMainPanel(), null);
         
-        
-		
 		
 		// Hide the default navigation buttons
 		for (int i = 0; i < tabbedPane.getTabCount(); i++) {

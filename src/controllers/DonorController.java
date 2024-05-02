@@ -25,13 +25,15 @@ public class DonorController implements ActionListener {
 	public DonorController(DonorView view) {
 		
 		this.donorview = view;
-
+		
 		// Add action listeners to view components
 		view.getButton1().addActionListener(this);
 		view.getButton2().addActionListener(this);
 		view.getButton3().addActionListener(this);
 		view.getCloseButton().addActionListener(this);
 		view.getLogoutButton().addActionListener(this);
+        view.buttonClicked(view.getButton1());
+
 	}
 
 	@Override
@@ -61,15 +63,17 @@ public class DonorController implements ActionListener {
 		} else if (e.getSource() == donorview.getCloseButton()) {
 			System.exit(0);
 		} else if (e.getSource() == donorview.getLogoutButton()) {
-			int option = JOptionPane.showConfirmDialog(donorview, "Are you sure you want to log out?", "Logout",
-					JOptionPane.YES_NO_OPTION);
+			int option = JOptionPane.showConfirmDialog(donorview, "Are you sure you want to log out?", "Logout",JOptionPane.YES_NO_OPTION);
+			
 			if (option == JOptionPane.YES_OPTION) {
-				// Log out by hiding the donorview and showing the loginview
-				donorview.dispose();
-				donorview.setVisible(false);
-				Login loginV = new Login();
-				LoginModel loginM = new LoginModel();
-				LoginController loginC = new LoginController(loginV, loginM);
+				// Dispose of or hide the DonorView
+			    donorview.dispose(); 
+			    donorview.setVisible(false);
+
+			    // Show the Login view
+			    Login loginV = new Login();
+			    LoginModel loginM = new LoginModel();
+			    new LoginController(loginV, loginM);		        
 			}
 		}
 	}

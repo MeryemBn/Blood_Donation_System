@@ -1,5 +1,5 @@
 package views;
-		
+
 import java.awt.BorderLayout;
 
 import java.awt.Color;
@@ -23,145 +23,140 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
-		public class HomeView extends JFrame {
-			private JFrame frame;
-		    private JButton button1;
-		    private JTabbedPane tabbedPane;
-		    private JButton button2;
-		    private JButton button3;
-		    private JButton closeButton;
-		    private JLabel titleLabel;
-		    private JPanel titlePanel;
-		    private JPanel menuPanel;
-		    private JPanel tabPanel1;
-		    private JPanel tabPanel2;
-		    private JPanel tabPanel3;
-		    private JButton logoutButton;
-		    private JPanel homePanel;
-		    private JLabel textLabel;
-		    
-			public HomeView(String username) {
-				Font  f4  = new Font(Font.DIALOG_INPUT,  Font.BOLD|Font.ITALIC, 20); 
-		        homePanel = new JPanel();
-		         homePanel.setLayout(new BorderLayout());
-		         homePanel.setBackground(new Color(255, 255, 255));         
-		         textLabel = new JLabel("Welcome " + username +", take an appointment and save many lives!");
-		         textLabel.setFont(f4);
-		         textLabel.setForeground(new Color(63, 81, 181));
-		         textLabel.setBorder(BorderFactory.createEmptyBorder(50, 10,0, 0));
-		         
-		         homePanel.add(textLabel, BorderLayout.NORTH);
-		          
-		         
-		         
-		         
-		         ImageIcon imageIcon = new ImageIcon(getClass().getResource("/images/home3.jpg"));
-		
-			      // Resize the image
-			      Image image = imageIcon.getImage();
-			      Image scaledImage = image.getScaledInstance(370, 250, Image.SCALE_SMOOTH); // Adjust the size as needed
-			
-			      // Create a new ImageIcon with the scaled image
-			      ImageIcon scaledImageIcon = new ImageIcon(scaledImage);
-			
-			      // Create a JLabel for the image
-			      JLabel imageLabel = new JLabel(scaledImageIcon);
-			
-			      // Set other properties for the imageLabel
-			      imageLabel.setOpaque(true);
-			      imageLabel.setBackground(Color.WHITE);
-			      imageLabel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
-			      imageLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add padding
-			      imageLabel.setBorder(BorderFactory.createCompoundBorder(
-			          BorderFactory.createLineBorder(Color.WHITE),
-			          BorderFactory.createEmptyBorder(10, 10, 10, 10)
-			      )); // Add border radius
-			      imageLabel.setPreferredSize(new Dimension(370, 250)); // Set preferred size
-		
-		      // Add the components to the homePanel
-		      homePanel.add(imageLabel, BorderLayout.EAST);
-		      
-		      JPanel descriptionPanel = new JPanel();
-		      descriptionPanel.setLayout(new BorderLayout());
-		      descriptionPanel.setBackground(new Color(255, 255, 255)); 
-		
-		      JTextArea descriptionArea1 = new JTextArea();
-		      descriptionArea1.setLineWrap(true); // Enable line wrapping
-		      descriptionArea1.setWrapStyleWord(true); // Wrap at word boundaries
-		      descriptionArea1.setColumns(38); 
-		      descriptionArea1.setFont(new Font("Times New Roman", Font.PLAIN,16));
-		      descriptionArea1.setText("Is your group's stock in bad shape? Plan a donation if you can.\r\n"
-		              + "Is your drop smiling? We're counting on your next donation to keep it that way!"); // Set the text
-		      descriptionArea1.setEditable(false); // Make the text area read-only
-		
-		      descriptionPanel.add(descriptionArea1, BorderLayout.SOUTH);
-		
-		      JLabel quoteLabel = new JLabel("A thousand reasons to give blood");
-		      quoteLabel.setFont(new Font(Font.DIALOG_INPUT, Font.BOLD | Font.ITALIC, 22));
-		      
-		      quoteLabel.setForeground(new Color(206, 0, 0));
-		      descriptionPanel.add(quoteLabel, BorderLayout.NORTH);
-		      descriptionArea1.setBorder(BorderFactory.createEmptyBorder(0, 10, 90, 0));
-		      quoteLabel.setBorder(BorderFactory.createEmptyBorder(50, 10, 0, 0));
-		
-		      homePanel.add(descriptionPanel, BorderLayout.WEST);
-		//Create a panel for the blood groups
-		  
-		  
+
+public class HomeView extends JFrame {
+	private JFrame frame;
+	private JButton button1;
+	private JTabbedPane tabbedPane;
+	private JButton button2;
+	private JButton button3;
+	private JButton closeButton;
+	private JLabel titleLabel;
+	private JPanel titlePanel;
+	private JPanel menuPanel;
+	private JPanel tabPanel1;
+	private JPanel tabPanel2;
+	private JPanel tabPanel3;
+	private JButton logoutButton;
+	private JPanel homePanel;
+	private JLabel textLabel;
+
+	public HomeView(String username) {
+		Font f4 = new Font(Font.DIALOG_INPUT, Font.BOLD | Font.ITALIC, 20);
+		homePanel = new JPanel();
+		homePanel.setLayout(new BorderLayout());
+		homePanel.setBackground(new Color(255, 255, 255));
+		homePanel.setBorder(new EmptyBorder(20, 0, 20, 0)); 
+
+		textLabel = new JLabel("Welcome " + username + ", take an appointment and save many lives!");
+		textLabel.setFont(f4);
+		textLabel.setForeground(new Color(63, 81, 181));
+		textLabel.setBorder(BorderFactory.createEmptyBorder(20, 10, 0, 0));
+
+		homePanel.add(textLabel, BorderLayout.NORTH);
+
+		ImageIcon imageIcon = new ImageIcon(getClass().getResource("/images/home3.jpg"));
+
+		// Resize the image
+		Image image = imageIcon.getImage();
+		Image scaledImage = image.getScaledInstance(370, 250, Image.SCALE_SMOOTH); // Adjust the size as needed
+
+		// Create a new ImageIcon with the scaled image
+		ImageIcon scaledImageIcon = new ImageIcon(scaledImage);
+
+		// Create a JLabel for the image
+		JLabel imageLabel = new JLabel(scaledImageIcon);
+
+		// Set other properties for the imageLabel
+		imageLabel.setOpaque(true);
+		imageLabel.setBackground(Color.WHITE);
+		imageLabel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+		imageLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add padding
+		imageLabel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.WHITE),
+				BorderFactory.createEmptyBorder(10, 10, 10, 10))); // Add border radius
+		imageLabel.setPreferredSize(new Dimension(370, 250)); // Set preferred size
+
+		// Add the components to the homePanel
+		homePanel.add(imageLabel, BorderLayout.EAST);
+
+		JPanel descriptionPanel = new JPanel();
+		descriptionPanel.setLayout(new BorderLayout());
+		descriptionPanel.setBackground(new Color(255, 255, 255));
+
+		JTextArea descriptionArea1 = new JTextArea();
+		descriptionArea1.setLineWrap(true); // Enable line wrapping
+		descriptionArea1.setWrapStyleWord(true); // Wrap at word boundaries
+		descriptionArea1.setColumns(38);
+		descriptionArea1.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		descriptionArea1.setText("Is your group's stock in bad shape? Plan a donation if you can.\r\n"
+				+ "Is your drop smiling? We're counting on your next donation to keep it that way!"); // Set the text
+		descriptionArea1.setEditable(false); // Make the text area read-only
+
+		descriptionPanel.add(descriptionArea1, BorderLayout.SOUTH);
+
+		JLabel quoteLabel = new JLabel("A thousand reasons to give blood");
+		quoteLabel.setFont(new Font(Font.DIALOG_INPUT, Font.BOLD | Font.ITALIC, 22));
+
+		quoteLabel.setForeground(new Color(206, 0, 0));
+		descriptionPanel.add(quoteLabel, BorderLayout.NORTH);
+		descriptionArea1.setBorder(BorderFactory.createEmptyBorder(0, 10, 90, 0));
+		quoteLabel.setBorder(BorderFactory.createEmptyBorder(50, 10, 0, 0));
+
+		homePanel.add(descriptionPanel, BorderLayout.WEST);
+		// Create a panel for the blood groups
+
 		JPanel bloodGroupPanel = new JPanel();
-		bloodGroupPanel.setLayout(new GridLayout(4,2)); // 2 rows, 4 columns
-		bloodGroupPanel.setBackground(new Color(255, 255, 255));  
-		
-		//Array of blood groups and their descriptions
-		String[] bloodGroups = {"A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"};
+		bloodGroupPanel.setLayout(new GridLayout(4, 2)); // 2 rows, 4 columns
+		bloodGroupPanel.setBackground(new Color(255, 255, 255));
+
+		// Array of blood groups and their descriptions
+		String[] bloodGroups = { "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" };
 		String[] descriptions = {
-			    "Wow! Our reserves for this group are doing very well! Life for Life - thank you for your generosity!",
-			    "Our reserves for this group are scarce. We rely on you to raise our stock!",
-			    "Wow! Our reserves for this group are doing very well!",
-			    "Our blood stocks for this blood group are critical. The outlook is very poor",
-			    "Wow! Our reserves for this group are doing very well! Life for Life - thank you for your generosity!",
-			    "Our blood stocks for this blood group are critical. The outlook is very poor. ",
-			    "Our reserves for this group are okay, but we could do better.",
-			    "Our blood stocks for this blood group are critical. The outlook is very poor."
-			};
+				"Wow! Our reserves for this group are doing very well! Life for Life - thank you for your generosity!",
+				"Our reserves for this group are scarce. We rely on you to raise our stock!",
+				"Wow! Our reserves for this group are doing very well!",
+				"Our blood stocks for this blood group are critical. The outlook is very poor",
+				"Wow! Our reserves for this group are doing very well! Life for Life - thank you for your generosity!",
+				"Our blood stocks for this blood group are critical. The outlook is very poor. ",
+				"Our reserves for this group are okay, but we could do better.",
+				"Our blood stocks for this blood group are critical. The outlook is very poor." };
 		JTextArea[] descriptionAreas = new JTextArea[descriptions.length];
 		for (int i = 0; i < descriptions.length; i++) {
-		    JTextArea descriptionArea = new JTextArea(descriptions[i]);
-		    descriptionArea.setFont(new Font("Times New Roman", Font.PLAIN,14));
-		    descriptionArea.setLineWrap(true); // Enable line wrapping
-		    descriptionArea.setWrapStyleWord(true); // Wrap at word boundaries
-		    descriptionArea.setEditable(false); // Make the text area read-only
-		    descriptionArea.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0)); // Add right padding
-		    descriptionAreas[i] = descriptionArea;
+			JTextArea descriptionArea = new JTextArea(descriptions[i]);
+			descriptionArea.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+			descriptionArea.setLineWrap(true); // Enable line wrapping
+			descriptionArea.setWrapStyleWord(true); // Wrap at word boundaries
+			descriptionArea.setEditable(false); // Make the text area read-only
+			descriptionArea.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0)); // Add right padding
+			descriptionAreas[i] = descriptionArea;
 		}
-		
-		//Create JLabels for each blood group and description
-		for (int i = 0; i < bloodGroups.length; i++) {
-		   JLabel bloodGroupLabel = new JLabel(bloodGroups[i]);
-		   JLabel descriptionLabel = new JLabel(descriptions[i]);
-		   
-		   bloodGroupLabel.setFont(new Font("Arial", Font.BOLD, 40)); // Set font size and style
-		   bloodGroupLabel.setForeground(Color.RED); 
-		   bloodGroupLabel.setPreferredSize(new Dimension(10, 10));
-		   descriptionLabel.setPreferredSize(new Dimension(10,10));
-		   bloodGroupLabel.setBorder(BorderFactory.createEmptyBorder(20,60, 0,0));
-		   
-		   bloodGroupPanel.add(bloodGroupLabel);
-		   
-		   // Add description area to blood group panel
-		   bloodGroupPanel.add(descriptionAreas[i]);
-		   
-		   
-		}
-		
-		//Add the blood group panel to the homePanel
-		
-		homePanel.add(bloodGroupPanel, BorderLayout.SOUTH);
-		        // Add the content panel to the first tab
 
-			}
-		
-		public JPanel getMainPanel() {
-	        return homePanel;
-	    }
+		// Create JLabels for each blood group and description
+		for (int i = 0; i < bloodGroups.length; i++) {
+			JLabel bloodGroupLabel = new JLabel(bloodGroups[i]);
+			JLabel descriptionLabel = new JLabel(descriptions[i]);
+
+			bloodGroupLabel.setFont(new Font("Arial", Font.BOLD, 40)); // Set font size and style
+			bloodGroupLabel.setForeground(Color.RED);
+			bloodGroupLabel.setPreferredSize(new Dimension(10, 10));
+			descriptionLabel.setPreferredSize(new Dimension(10, 10));
+			bloodGroupLabel.setBorder(BorderFactory.createEmptyBorder(20, 60, 0, 0));
+
+			bloodGroupPanel.add(bloodGroupLabel);
+
+			// Add description area to blood group panel
+			bloodGroupPanel.add(descriptionAreas[i]);
+
 		}
+
+		// Add the blood group panel to the homePanel
+
+		homePanel.add(bloodGroupPanel, BorderLayout.SOUTH);
+		// Add the content panel to the first tab
+
+	}
+
+	public JPanel getMainPanel() {
+		return homePanel;
+	}
+}

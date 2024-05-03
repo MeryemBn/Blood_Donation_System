@@ -135,8 +135,6 @@ public class DonorView extends JFrame {
 
 		// Center the frame on the screen
 		frame.setLocationRelativeTo(null);
-
-		frame.setVisible(true);
 	}
 
 	private JButton createButton(String text) {
@@ -199,6 +197,11 @@ public class DonorView extends JFrame {
 	public DonationsHistoryView getDonationsHistoryView() {
 	    return donationsHistoryView;
 	}
-   
+   public void DonorViewSetVisible(){
+	   frame.setVisible(true);
+   }
+   public void DonorViewSetInvisible(){
+	   frame.setVisible(false);
+   }
+   }
 
-}

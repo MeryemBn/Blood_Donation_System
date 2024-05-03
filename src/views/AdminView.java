@@ -128,13 +128,15 @@ public class AdminView extends JFrame {
 
         tabbedPane = new JTabbedPane();
         tabbedPane.setBorder(BorderFactory.createEmptyBorder(-9, -2,-2, -2));
-        tabPanel1 = createTabPanel(Color.WHITE);
+        
+        DashboardView dashboardView = new DashboardView(); // Create an instance of DashboardView
+        tabbedPane.addTab("1", null, dashboardView.getMainPanel(), null); // Call getMainPanel() on the instance
+        
         tabPanel2 = createTabPanel(Color.BLUE);
         tabPanel3 = createTabPanel(Color.GREEN);
         tabPanel4 = createTabPanel(Color.RED);
         tabPanel5 = createTabPanel(Color.YELLOW);
 
-        tabbedPane.addTab("1", tabPanel1);
         tabbedPane.addTab("2", tabPanel2);
         tabbedPane.addTab("3", tabPanel3);
         tabbedPane.addTab("4", tabPanel4);
@@ -149,8 +151,6 @@ public class AdminView extends JFrame {
         frame.add(tabbedPane, BorderLayout.CENTER);
         // Center the frame on the screen
         frame.setLocationRelativeTo(null);
-
-        frame.setVisible(true);
     }
 
     private JButton createButton(String text) {
@@ -209,5 +209,10 @@ public class AdminView extends JFrame {
     public void buttonReleased(JButton source) {
         source.setBackground(new Color(206, 0, 0));
     }
-
+    public void AdminViewSetVisible(){
+ 	   frame.setVisible(true);
+    }
+    public void AdminViewSetInvisible(){
+ 	   frame.setVisible(false);
+    }
 }

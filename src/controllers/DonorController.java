@@ -67,13 +67,13 @@ public class DonorController implements ActionListener {
 			
 			if (option == JOptionPane.YES_OPTION) {
 				// Dispose of or hide the DonorView
-			    donorview.dispose(); 
-			    donorview.setVisible(false);
+			    donorview.DonorViewSetInvisible();
+			    donorview = null;
 
 			    // Show the Login view
 			    Login loginV = new Login();
 			    LoginModel loginM = new LoginModel();
-			    new LoginController(loginV, loginM);		        
+			    new LoginController(loginV, loginM);	        
 			}
 		}
 	}

@@ -75,8 +75,8 @@ public class AdminController implements ActionListener {
         	int option = JOptionPane.showConfirmDialog(adminview, "Are you sure you want to log out?", "Logout", JOptionPane.YES_NO_OPTION);
             if (option == JOptionPane.YES_OPTION) {
                 // Log out by hiding the donorview and showing the loginview
-            	adminview.dispose();
-            	adminview.setVisible(false);
+            	adminview.AdminViewSetInvisible();
+            	adminview = null;
                 Login loginV= new Login();
                 LoginModel loginM = new LoginModel();
                 LoginController loginC = new LoginController(loginV,loginM);

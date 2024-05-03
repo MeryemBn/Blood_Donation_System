@@ -13,7 +13,7 @@ public class PriseRendezVousControleur {
     public void prendreRendezVouss(String nom, String prenom, String groupeSanguin, LocalDate dateRendezVous, LocalTime heureRendezVous) {
         // Validation des données
         if (nom.isEmpty() || prenom.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please fill in all the fields", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -33,9 +33,9 @@ public class PriseRendezVousControleur {
 
                 int rowsInserted = statement.executeUpdate();
                 if (rowsInserted > 0) {
-                    JOptionPane.showMessageDialog(null, "Rendez-vous pris avec succès pour " + prenom + " " + nom, "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Appointment successfully booked for " + prenom + " " + nom, "Confirmation", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Erreur lors de l'insertion du rendez-vous", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error while inserting the appointment", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } catch (SQLException ex) {

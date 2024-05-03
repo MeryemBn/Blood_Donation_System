@@ -1,8 +1,5 @@
 package views;
 
-
-
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -10,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import controllers.PriseRendezVousControleur;
+import views.CustomComboBoxRenderer;
 
 public class PriseRendezVousVue extends JFrame {
     private JTextField nomField;
@@ -18,53 +16,47 @@ public class PriseRendezVousVue extends JFrame {
     private JSpinner dateRendezVousSpinner;
     private JSpinner heureRendezVousSpinner;
     private PriseRendezVousControleur controleur;
-    private  BackgroundPanel backgroundPanel ;
-   
+    private BackgroundPanel backgroundPanel;
 
     public PriseRendezVousVue(PriseRendezVousControleur controleur) {
         super("Prise de rendez-vous");
         this.controleur = controleur;
-        
-     
-        JLabel nomLabel = new JLabel("Nom : ");
-        JLabel prenomLabel = new JLabel("Prénom : ");
-        JLabel groupeSanguinLabel = new JLabel("Groupe sanguin : ");
-        JLabel dateRendezVousLabel = new JLabel("Date du rendez-vous (AAAA-MM-JJ) : ");
-        JLabel heureRendezVousLabel = new JLabel("Heure du rendez-vous (HH:MM) : ");
-        
-        Font labelFont = new Font("Arial", Font.BOLD, 14);
+
+        JLabel titleLabel1 = new JLabel("Make an Appointment, Save Lives");
+        titleLabel1.setFont(new Font("Brush Script MT", Font.BOLD, 22));
+        titleLabel1.setForeground(new Color(255, 0, 0));
+
+        JLabel nomLabel = new JLabel("Last Name: ");
+        JLabel prenomLabel = new JLabel("First Name : ");
+        JLabel groupeSanguinLabel = new JLabel("Blood Group : ");
+        JLabel dateRendezVousLabel = new JLabel("Date of Appointment : ");
+        JLabel heureRendezVousLabel = new JLabel("Time of Appointment : ");
+
+        Font labelFont = new Font("Arial", Font.BOLD, 16);
         nomLabel.setFont(labelFont);
         prenomLabel.setFont(labelFont);
         groupeSanguinLabel.setFont(labelFont);
         dateRendezVousLabel.setFont(labelFont);
         heureRendezVousLabel.setFont(labelFont);
 
-        nomLabel.setForeground(new Color(0xD0, 0x2E, 0x3B));
-        prenomLabel.setForeground(new Color(0xD0, 0x2E, 0x3B));
-        groupeSanguinLabel.setForeground(new Color(0xD0, 0x2E, 0x3B));
-        dateRendezVousLabel.setForeground(new Color(0xD0, 0x2E, 0x3B));
-        heureRendezVousLabel.setForeground(new Color(0xD0, 0x2E, 0x3B));
+        nomLabel.setForeground(new Color(63, 81, 181));
+        prenomLabel.setForeground(new Color(63, 81, 181));
+        groupeSanguinLabel.setForeground(new Color(63, 81, 181));
+        dateRendezVousLabel.setForeground(new Color(63, 81, 181));
+        heureRendezVousLabel.setForeground(new Color(63, 81, 181));
 
-        
-        
+        setSize(900, 600);
 
-        // Configuration de la taille de la fenêtre
-        setSize(900, 600); // Définition d'une taille plus grande
-
-        // Création du panneau principal avec une image de fond
         backgroundPanel = new BackgroundPanel();
-        backgroundPanel.setLayout(new BorderLayout()); // Utilisation d'un layout BorderLayout
+        backgroundPanel.setLayout(new BorderLayout());
 
-       
-        // Création du panneau pour le formulaire
-        JPanel formPanel = new JPanel();
-        formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS)); // Utilisation d'un layout BoxLayout vertical
-        formPanel.setPreferredSize(new Dimension(300, 400)); // Définition de la taille maximale du panneau
-        formPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Ajout de marges
+        JPanel formPanel = new JPanel(new GridBagLayout());
+        formPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        formPanel.setPreferredSize(new Dimension(350, 300));
 
         // Création des composants du formulaire
-        nomField = new JTextField(10);
-        prenomField = new JTextField(10);
+        nomField = new JTextField(20);
+        prenomField = new JTextField(20);
         groupeSanguinComboBox = new JComboBox<>(new String[]{"A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"});
 
         SpinnerDateModel dateModel = new SpinnerDateModel();
@@ -77,81 +69,184 @@ public class PriseRendezVousVue extends JFrame {
         JSpinner.DateEditor heureEditor = new JSpinner.DateEditor(heureRendezVousSpinner, "HH:mm");
         heureRendezVousSpinner.setEditor(heureEditor);
         
-        // Création du bouton pour prendre rendez-vous
-        JButton prendreRendezVousButton = new JButton("Prendre rendez-vous");
+        
+        customizeSpinnerArrow(dateRendezVousSpinner);
+        customizeSpinnerArrow(heureRendezVousSpinner);
+
+        JButton prendreRendezVousButton = new JButton("Make an Appointment");
         prendreRendezVousButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 prendreRendezVous();
             }
         });
         
-        prendreRendezVousButton.setBackground(Color.WHITE);
-        prendreRendezVousButton.setForeground(new Color(0xD0, 0x2E, 0x3B));
-       
-        formPanel.setBackground(new Color(0xD0, 0x2E, 0x3B));
-        // Ajout des composants au panneau de formulaire
-        formPanel.add(createFormField(nomLabel, nomField));
-        formPanel.add(Box.createVerticalStrut(5)); // Espace vertical
-        formPanel.add(createFormField(prenomLabel, prenomField));
-        formPanel.add(Box.createVerticalStrut(5)); // Espace vertical
-        formPanel.add(createFormField(groupeSanguinLabel, groupeSanguinComboBox));
-        formPanel.add(Box.createVerticalStrut(5)); // Espace vertical
-        formPanel.add(createFormField(dateRendezVousLabel, dateRendezVousSpinner));
-        formPanel.add(Box.createVerticalStrut(5)); // Espace vertical
-        formPanel.add(createFormField(heureRendezVousLabel, heureRendezVousSpinner));
-        formPanel.add(Box.createVerticalStrut(5)); // Espace vertical
-        formPanel.add(prendreRendezVousButton);
-
-        // Ajout du formulaire au panneau principal
-        backgroundPanel.add(formPanel, BorderLayout.WEST);
-
-        // Ajout du panneau principal à la fenêtre
-        getContentPane().add(backgroundPanel);
+     // Ajustement de la taille des JTextField
+        nomField.setPreferredSize(new Dimension(200, 30)); // Largeur de 200 pixels, hauteur de 30 pixels pour le champ nom
+        prenomField.setPreferredSize(new Dimension(200, 30)); // Largeur de 200 pixels, hauteur de 30 pixels pour le champ prénom
+        groupeSanguinComboBox.setPreferredSize(new Dimension(200, 30)); 
+        dateRendezVousSpinner.setPreferredSize(new Dimension(200, 30)); 
+        heureRendezVousSpinner.setPreferredSize(new Dimension(200, 30)); 
+        ((JSpinner.DefaultEditor) dateRendezVousSpinner.getEditor()).getTextField().setPreferredSize(new Dimension(200, 30));
+        ((JSpinner.DefaultEditor) heureRendezVousSpinner.getEditor()).getTextField().setPreferredSize(new Dimension(200, 30));
+        Font spinnerFont = ((JSpinner.DefaultEditor) dateRendezVousSpinner.getEditor()).getTextField().getFont();
+        nomField.setFont(spinnerFont);
+        prenomField.setFont(spinnerFont);
 
         
-    }
-    
-    
+     // Pour la dateRendezVousSpinner
+        JComponent dateEditorComponent = dateRendezVousSpinner.getEditor();
+        if (dateEditorComponent instanceof JSpinner.DefaultEditor) {
+            JSpinner.DefaultEditor spinnerEditor = (JSpinner.DefaultEditor) dateEditorComponent;
+            JTextField textField = spinnerEditor.getTextField();
+            if (textField != null) {
+                textField.setBackground(Color.WHITE);
+            }
+        }
 
-    // Méthode utilitaire pour créer un champ de formulaire avec une étiquette
-    private JPanel createFormField(JLabel label, JComponent component) {
-        JPanel panel = new JPanel(new BorderLayout());
-        label.setAlignmentX(Component.LEFT_ALIGNMENT);
-        panel.add(label, BorderLayout.NORTH); // Ajout du JLabel passé en paramètre
-        panel.add(component, BorderLayout.CENTER);
-        return panel;
+
+
+        
+        
+        
+     // Ajout d'un FocusListener pour changer la couleur de la bordure lorsque le champ a le focus
+        nomField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                // Changer la couleur de la bordure en bleu lorsque le champ a le focus
+                nomField.setBorder(BorderFactory.createLineBorder(new Color(45, 191, 255) ));
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                // Changer la couleur de la bordure en noir lorsque le champ perd le focus
+                nomField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            }
+        });
+
+        // Ajoutez un FocusListener pour le prénom
+        prenomField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                prenomField.setBorder(BorderFactory.createLineBorder(new Color(45, 191, 255)));
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                prenomField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            }
+        });
+        
+        
+        
+        Color lightBlue = new Color(173, 216, 230); // Couleur bleu clair
+
+     // Appliquer le renderer personnalisé à la JComboBox
+     groupeSanguinComboBox.setRenderer(new CustomComboBoxRenderer(new Color(45, 191, 255)));
+     groupeSanguinComboBox.setBackground(Color.WHITE);
+  // Définir la couleur de fond du champ de texte de la date en blanc
+     dateEditor.getTextField().setBackground(Color.WHITE);
+
+     // Définir la couleur de fond du champ de texte de l'heure en blanc
+     heureEditor.getTextField().setBackground(Color.WHITE);
+
+
+        prendreRendezVousButton.setBackground(Color.WHITE);
+        prendreRendezVousButton.setForeground(new Color(0xD0, 0x2E, 0x3B));
+        
+        
+        
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(7,5 ,5, 5);
+
+        formPanel.add(titleLabel1, gbc);
+        gbc.gridy++;
+        formPanel.add(nomLabel, gbc);
+        gbc.gridy++;
+        formPanel.add(nomField, gbc);
+        gbc.gridy++;
+        formPanel.add(prenomLabel, gbc);
+        gbc.gridy++;
+        formPanel.add(prenomField, gbc);
+        gbc.gridy++;
+        formPanel.add(groupeSanguinLabel, gbc);
+        gbc.gridy++;
+        formPanel.add(groupeSanguinComboBox, gbc);
+        gbc.gridy++;
+        formPanel.add(dateRendezVousLabel, gbc);
+        gbc.gridy++;
+        formPanel.add(dateRendezVousSpinner, gbc);
+        gbc.gridy++;
+        formPanel.add(heureRendezVousLabel, gbc);
+        gbc.gridy++;
+        formPanel.add(heureRendezVousSpinner, gbc);
+        gbc.gridy++;
+        formPanel.add(prendreRendezVousButton, gbc);
+
+        formPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 20, 20));
+        gbc.insets = new Insets(10, 10, 10, 10);
+
+        setBackground(new Color(0xFA, 0xFA, 0xFA));
+        formPanel.setBackground(new Color(0xFA, 0xFA, 0xFA));
+        formPanel.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(63, 81, 181), 2), // Bordure rouge de largeur 2 pixels
+                BorderFactory.createEmptyBorder(20, 20, 20, 20)));
+
+        backgroundPanel.add(formPanel, BorderLayout.EAST);
+
+        getContentPane().add(backgroundPanel);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    // Méthode pour prendre rendez-vous
     private void prendreRendezVous() {
         String nom = nomField.getText();
         String prenom = prenomField.getText();
         String groupeSanguin = (String) groupeSanguinComboBox.getSelectedItem();
         LocalDate dateRendezVous = ((java.util.Date) dateRendezVousSpinner.getValue()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalTime heureRendezVous = ((java.util.Date) heureRendezVousSpinner.getValue()).toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
+
         controleur.prendreRendezVouss(nom, prenom, groupeSanguin, dateRendezVous, heureRendezVous);
     }
 
-    // Classe pour dessiner une image de fond
     class BackgroundPanel extends JPanel {
         private Image backgroundImage;
 
         public BackgroundPanel() {
-            // Charger l'image de fond
-            backgroundImage = new ImageIcon(getClass().getResource("/images/backgroundrv4.jpg")).getImage();
+            backgroundImage = new ImageIcon(getClass().getResource("/images/background8.png")).getImage();
         }
 
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-            // Dessiner l'image de fond
             g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
         }
-        
     }
-    
+
     public JPanel getMainPanel() {
         return backgroundPanel;
     }
-    
+
+    private void customizeSpinnerArrow(JSpinner spinner) {
+        Component editor = spinner.getEditor();
+        if (editor instanceof JSpinner.DefaultEditor) {
+            JSpinner.DefaultEditor spinnerEditor = (JSpinner.DefaultEditor) editor;
+            spinnerEditor.getTextField().setBackground(new Color(63, 81, 181));
+            Component[] components = spinner.getComponents();
+            for (Component comp : components) {
+                if (comp instanceof JButton) {
+                    JButton button = (JButton) comp;
+                    if (spinner.getComponent(0) == comp) { // La première composant est la flèche vers le haut
+                        button.setBackground(new Color(63, 81, 181));
+                        button.setForeground(Color.white);
+                    } else { // La deuxième composant est la flèche vers le bas
+                        button.setBackground(new Color(63, 81, 181));
+                        button.setForeground(Color.white);
+                    }
+                }
+            }
+        }
+    }
 }

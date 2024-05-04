@@ -1,12 +1,15 @@
 package views;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Image;
 
@@ -25,6 +28,11 @@ import javax.swing.border.EmptyBorder;
 
 import controllers.DonorsListController;
 import models.DonorsListModel;
+import models.RendezvousListeModel;
+import views.RendezvousListeView;
+import controllers.RendezvousListeController;
+
+
 
 public class AdminView extends JFrame {
 	private JFrame frame;
@@ -56,7 +64,7 @@ public class AdminView extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setUndecorated(true);
 		frame.setSize(1100, 670);
-
+		
 		// Create a panel for the title bar
 		titlePanel = new JPanel();
 		titlePanel.setLayout(new FlowLayout(FlowLayout.RIGHT)); // Align components to the right
@@ -154,7 +162,13 @@ public class AdminView extends JFrame {
 		tabbedPane.addTab("3",donorsListView.getMainPanel());
 		
 		tabbedPane.addTab("4", tabPanel4);
-		tabbedPane.addTab("5", tabPanel5);
+		
+		 RendezvousListeModel model = new RendezvousListeModel();
+	     RendezvousListeView view = new RendezvousListeView();
+	     RendezvousListeController controller = new RendezvousListeController(model, view);
+	     
+	     controller.displayRendezvousList();
+		tabbedPane.addTab("5", view.getMainPanel());
 
 		// Hide the default navigation buttons
 		for (int i = 0; i < tabbedPane.getTabCount(); i++) {

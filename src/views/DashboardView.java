@@ -117,4 +117,4 @@ public class DashboardView extends JFrame {
 		return mainPanel;
 	}
 
-}
+} 

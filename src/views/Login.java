@@ -11,6 +11,7 @@ public class Login extends JFrame {
     private JRadioButton donorRadioButton;
     private JRadioButton adminRadioButton;
     private JButton closeButton;
+    private JButton backButton;
 
     public Login() {
         setTitle("Login");
@@ -23,7 +24,7 @@ public class Login extends JFrame {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(null);
 
-        closeButton = new JButton("X");
+        closeButton =new JButton(new ImageIcon(getClass().getResource("/images/closeIcon.png")));
         closeButton.setBounds(707, 0, 59, 54);
         closeButton.setFont(new Font("Arial", Font.PLAIN, 16));
         closeButton.setForeground(Color.WHITE);
@@ -36,7 +37,7 @@ public class Login extends JFrame {
         usernameLabel.setForeground(Color.WHITE);
         usernameLabel.setFont(new Font("Arial", Font.BOLD, 20));
         usernameLabel.setBounds(372, 146, 148, 30);
-        mainPanel.add(usernameLabel);
+        mainPanel.add(usernameLabel); 
 
         usernameField = new JTextField();
         usernameField.setBounds(516, 152, 200, 25);
@@ -60,7 +61,16 @@ public class Login extends JFrame {
         loginButton.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
         loginButton.setFocusPainted(false);
         mainPanel.add(loginButton);
-
+        
+        backButton= new JButton(new ImageIcon(getClass().getResource("/images/backIcon.png")));
+        backButton.setBounds(-5, 0, 59, 54);
+        backButton.setFont(new Font("Arial", Font.PLAIN, 16));
+        backButton.setForeground(Color.WHITE);
+        backButton.setBorder(BorderFactory.createEmptyBorder());
+        backButton.setContentAreaFilled(false);
+        backButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        mainPanel.add(backButton);
+        
         ButtonGroup buttonGroup = new ButtonGroup();
 
         donorRadioButton = new JRadioButton("Donor Login");
@@ -107,8 +117,11 @@ public class Login extends JFrame {
     public JRadioButton getAdminRadioButton() {
         return adminRadioButton;
     }
-
+ 
     public JButton getCloseButton() {
         return closeButton;
+    }
+    public JButton getBackButton() {
+        return backButton;
     }
 }

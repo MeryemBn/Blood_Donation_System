@@ -73,14 +73,16 @@ public class AdminController implements ActionListener {
             System.exit(0);
         } else if (e.getSource() == adminview.getLogoutButton()) {
         	int option = JOptionPane.showConfirmDialog(adminview, "Are you sure you want to log out?", "Logout", JOptionPane.YES_NO_OPTION);
-            if (option == JOptionPane.YES_OPTION) {
-                // Log out by hiding the donorview and showing the loginview
-            	adminview.AdminViewSetInvisible();
-            	adminview = null;
-                Login loginV= new Login();
-                LoginModel loginM = new LoginModel();
-                LoginController loginC = new LoginController(loginV,loginM);
-            }
+        	if (option == JOptionPane.YES_OPTION) {
+				// Dispose of or hide the DonorView
+			    adminview.AdminViewSetInvisible();
+			    adminview = null;
+
+			    // Show the Login view
+			    Login loginV = new Login();
+			    LoginModel loginM = new LoginModel();
+			    new LoginController(loginV, loginM);	        
+			}
         }
     }
 

@@ -25,23 +25,10 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 public class HomeView extends JFrame {
-	private JFrame frame;
-	private JButton button1;
-	private JTabbedPane tabbedPane;
-	private JButton button2;
-	private JButton button3;
-	private JButton closeButton;
-	private JLabel titleLabel;
-	private JPanel titlePanel;
-	private JPanel menuPanel;
-	private JPanel tabPanel1;
-	private JPanel tabPanel2;
-	private JPanel tabPanel3;
-	private JButton logoutButton;
 	private JPanel homePanel;
 	private JLabel textLabel;
 
-	public HomeView(String username) {
+	public HomeView(String username) { 
 		Font f4 = new Font(Font.DIALOG_INPUT, Font.BOLD | Font.ITALIC, 20);
 		homePanel = new JPanel();
 		homePanel.setLayout(new BorderLayout());
@@ -51,7 +38,7 @@ public class HomeView extends JFrame {
 		textLabel = new JLabel("Welcome " + username + ", take an appointment and save many lives!");
 		textLabel.setFont(f4);
 		textLabel.setForeground(new Color(63, 81, 181));
-		textLabel.setBorder(BorderFactory.createEmptyBorder(20, 10, 0, 0));
+		textLabel.setBorder(BorderFactory.createEmptyBorder(70, 80, 0, 0));
 
 		homePanel.add(textLabel, BorderLayout.NORTH);
 
@@ -87,11 +74,11 @@ public class HomeView extends JFrame {
 		descriptionArea1.setLineWrap(true); // Enable line wrapping
 		descriptionArea1.setWrapStyleWord(true); // Wrap at word boundaries
 		descriptionArea1.setColumns(38);
-		descriptionArea1.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		descriptionArea1.setFont(new Font("Times New Roman", Font.PLAIN, 18));
 		descriptionArea1.setText("Is your group's stock in bad shape? Plan a donation if you can.\r\n"
 				+ "Is your drop smiling? We're counting on your next donation to keep it that way!"); // Set the text
 		descriptionArea1.setEditable(false); // Make the text area read-only
-
+		descriptionPanel.setBorder(BorderFactory.createEmptyBorder(0, 80, 0, 0));
 		descriptionPanel.add(descriptionArea1, BorderLayout.SOUTH);
 
 		JLabel quoteLabel = new JLabel("A thousand reasons to give blood");
@@ -123,7 +110,7 @@ public class HomeView extends JFrame {
 		JTextArea[] descriptionAreas = new JTextArea[descriptions.length];
 		for (int i = 0; i < descriptions.length; i++) {
 			JTextArea descriptionArea = new JTextArea(descriptions[i]);
-			descriptionArea.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+			descriptionArea.setFont(new Font("Times New Roman", Font.PLAIN, 18));
 			descriptionArea.setLineWrap(true); // Enable line wrapping
 			descriptionArea.setWrapStyleWord(true); // Wrap at word boundaries
 			descriptionArea.setEditable(false); // Make the text area read-only
@@ -140,23 +127,23 @@ public class HomeView extends JFrame {
 			bloodGroupLabel.setForeground(Color.RED);
 			bloodGroupLabel.setPreferredSize(new Dimension(10, 10));
 			descriptionLabel.setPreferredSize(new Dimension(10, 10));
-			bloodGroupLabel.setBorder(BorderFactory.createEmptyBorder(20, 60, 0, 0));
-
+			bloodGroupLabel.setBorder(BorderFactory.createEmptyBorder(20,160, 0, 0));
+			
 			bloodGroupPanel.add(bloodGroupLabel);
 
-			// Add description area to blood group panel
+		 	// Add description area to blood group panel 
 			bloodGroupPanel.add(descriptionAreas[i]);
 
 		}
+		bloodGroupPanel.setBorder(BorderFactory.createEmptyBorder(0,50, 80, 170));
+		 // Add the blood group panel to the homePanel 
+ 
+		homePanel.add(bloodGroupPanel, BorderLayout.SOUTH); 
+		 // Add the content panel to the first tab 
 
-		// Add the blood group panel to the homePanel
-
-		homePanel.add(bloodGroupPanel, BorderLayout.SOUTH);
-		// Add the content panel to the first tab
-
-	}
+	} 
 
 	public JPanel getMainPanel() {
-		return homePanel;
+		return homePanel; 
 	}
 }

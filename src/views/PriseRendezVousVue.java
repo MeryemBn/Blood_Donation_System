@@ -29,7 +29,7 @@ public class PriseRendezVousVue extends JFrame {
         JLabel nomLabel = new JLabel("Last Name: ");
         JLabel prenomLabel = new JLabel("First Name : ");
         JLabel groupeSanguinLabel = new JLabel("Blood Group : ");
-        JLabel dateRendezVousLabel = new JLabel("Date of Appointment : ");
+        JLabel dateRendezVousLabel = new JLabel("Date of Appointment : "); 
         JLabel heureRendezVousLabel = new JLabel("Time of Appointment : ");
 
         Font labelFont = new Font("Arial", Font.BOLD, 16);
@@ -52,7 +52,7 @@ public class PriseRendezVousVue extends JFrame {
 
         JPanel formPanel = new JPanel(new GridBagLayout());
         formPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        formPanel.setPreferredSize(new Dimension(350, 300));
+        formPanel.setPreferredSize(new Dimension(550, 300));
 
         // Création des composants du formulaire
         nomField = new JTextField(20);

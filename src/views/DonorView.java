@@ -6,6 +6,9 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -41,22 +44,22 @@ public class DonorView extends JFrame {
 		frame = new JFrame("Accueil Donneur");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setUndecorated(true);
-		frame.setSize(1100, 670);
+		frame.setSize(1540, 830);
 
 		// Create a panel for the title bar
 		titlePanel = new JPanel();
 		titlePanel.setLayout(new FlowLayout(FlowLayout.RIGHT)); // Align components to the right
 		titlePanel.setBackground(new Color(206, 0, 0)); // Set background color of the title bar
-		titlePanel.setPreferredSize(new Dimension(1100, 45));
+		titlePanel.setPreferredSize(new Dimension(1100, 45)); 
 
 		titleLabel = new JLabel("Blood Donation System");
 		titleLabel.setFont(new Font("Arial", Font.PLAIN, 22));
 		titleLabel.setForeground(Color.WHITE);
-		titleLabel.setBorder(new EmptyBorder(6, 0, 0, 0)); 
+		titleLabel.setBorder(new EmptyBorder(4, 0, 0, 230));
 
 		// Ajouter le label au centre du titlePanel
 		titlePanel.add(titleLabel);
-		titlePanel.add(Box.createHorizontalStrut(400));
+		titlePanel.add(Box.createHorizontalStrut(380));
 
 		// Add a close button to the title bar
 		closeButton = new JButton("X");
@@ -72,11 +75,12 @@ public class DonorView extends JFrame {
 		frame.getContentPane().add(titlePanel, BorderLayout.NORTH);
 
 		// Create the menu panel
+		
 		menuPanel = new JPanel();
 		menuPanel.setBackground(new Color(206, 0, 0));
 		menuPanel.setPreferredSize(new Dimension(270, 600));
 		menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
-		menuPanel.add(Box.createVerticalStrut(160));
+		menuPanel.add(Box.createVerticalStrut(240));
 
 		// Create the buttons
 		button1 = createButton("Home");
@@ -93,7 +97,7 @@ public class DonorView extends JFrame {
 		menuPanel.add(Box.createVerticalStrut(30));
 		menuPanel.add(button3);
 
-		menuPanel.add(Box.createVerticalStrut(160), BorderLayout.NORTH);
+		menuPanel.add(Box.createVerticalStrut(245));
 
 		// Créez le bouton de déconnexion avec une icône
 		logoutButton = new JButton("Logout", new ImageIcon(getClass().getResource("/images/logout.png")));
@@ -101,7 +105,7 @@ public class DonorView extends JFrame {
 		logoutButton.setForeground(Color.WHITE);
 		logoutButton.setBackground(new Color(206, 0, 0));
 		logoutButton.setFocusPainted(false);
-		logoutButton.setBorder(BorderFactory.createEmptyBorder(10, 87, 10, 87));
+		logoutButton.setBorder(BorderFactory.createEmptyBorder(18, 87, 18, 87));
 		logoutButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 		// Ajoutez le bouton de déconnexion au sud (en bas) du menuPanel

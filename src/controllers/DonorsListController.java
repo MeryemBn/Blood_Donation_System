@@ -8,9 +8,11 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import models.DashboardModel;
 import models.Donor;
 import models.DonorsListModel;
 import views.AddDonorView;
+import views.DashboardView;
 import views.DonorsListView;
 import views.UpdateDonorView;
 
@@ -143,7 +145,9 @@ public class DonorsListController implements ActionListener {
 						JOptionPane.INFORMATION_MESSAGE);
 
 				initAddView();
-
+				addView.dispose();
+		        
+		        // Create a new instance of DashboardView and update its data
 			} else {
 				JOptionPane.showMessageDialog(addView, "Failed to add donor.", "Error", JOptionPane.ERROR_MESSAGE);
 			}

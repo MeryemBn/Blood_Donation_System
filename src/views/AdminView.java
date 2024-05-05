@@ -12,6 +12,7 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -26,7 +27,10 @@ import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import controllers.BloodGroupController;
 import controllers.DonorsListController;
+import models.BloodGroupList;
+import models.BloodGroupListModel;
 import models.DonorsListModel;
 import models.RendezvousListeModel;
 import views.RendezvousListeView;
@@ -63,7 +67,10 @@ public class AdminView extends JFrame {
 		frame = new JFrame("Accueil Admin");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setUndecorated(true);
-		frame.setSize(1100, 670);
+		frame.setSize(1540, 830);
+		/*GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice gd = ge.getDefaultScreenDevice();
+        gd.setFullScreenWindow(frame);*/
 		
 		// Create a panel for the title bar
 		titlePanel = new JPanel();
@@ -74,7 +81,7 @@ public class AdminView extends JFrame {
 		titleLabel = new JLabel("Blood Donation System");
 		titleLabel.setFont(new Font("Arial", Font.PLAIN, 22));
 		titleLabel.setForeground(Color.WHITE);
-		titleLabel.setBorder(new EmptyBorder(6, 0, 0, 0));
+		titleLabel.setBorder(new EmptyBorder(4, 0, 0, 200));
 
 		// Ajouter le label au centre du titlePanel
 		titlePanel.add(titleLabel);
@@ -98,7 +105,7 @@ public class AdminView extends JFrame {
 		menuPanel.setBackground(new Color(206, 0, 0));
 		menuPanel.setPreferredSize(new Dimension(270, 600));
 		menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
-		menuPanel.add(Box.createVerticalStrut(100));
+		menuPanel.add(Box.createVerticalStrut(200));
 
 		// Create the buttons
 		button1 = createButton("Dashboard");
@@ -123,7 +130,7 @@ public class AdminView extends JFrame {
 		menuPanel.add(Box.createVerticalStrut(10));
 		menuPanel.add(button5);
 
-		menuPanel.add(Box.createVerticalStrut(100), BorderLayout.NORTH);
+		menuPanel.add(Box.createVerticalStrut(200), BorderLayout.NORTH);
 
 		// Créez le bouton de déconnexion avec une icône
 		logoutButton = new JButton("Logout", new ImageIcon(getClass().getResource("/images/logout.png")));
@@ -131,7 +138,7 @@ public class AdminView extends JFrame {
 		logoutButton.setForeground(Color.WHITE);
 		logoutButton.setBackground(new Color(206, 0, 0));
 		logoutButton.setFocusPainted(false);
-		logoutButton.setBorder(BorderFactory.createEmptyBorder(10, 87, 10, 87));
+		logoutButton.setBorder(BorderFactory.createEmptyBorder(18, 87, 18, 87));
 		logoutButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 		// Ajoutez le bouton de déconnexion au sud (en bas) du menuPanel
@@ -150,8 +157,13 @@ public class AdminView extends JFrame {
 
 		tabPanel4 = createTabPanel(Color.RED);
 		tabPanel5 = createTabPanel(Color.YELLOW);
-
-		tabbedPane.addTab("2", tabPanel2);
+		
+		 BloodGroupListModel bloodModel = new BloodGroupListModel();
+         List<BloodGroupList> data = bloodModel.getAllPacks();
+         BloodGroupView bloodView = new BloodGroupView(data);
+         BloodGroupController bloodController = new BloodGroupController(bloodView, bloodModel);
+		
+		tabbedPane.addTab("2", bloodView.getBloodPanel());
 		
 		// Add donors list
 		donorsListView = new DonorsListView();

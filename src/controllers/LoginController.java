@@ -6,6 +6,7 @@ import models.LoginModel;
 
 import views.Login;
 import views.DonorView;
+import views.Acceuil;
 import views.AdminView;
 import models.AdminModel;
 
@@ -17,7 +18,7 @@ public class LoginController implements ActionListener {
 	private Login loginview;
 	private LoginModel model;
 	private DonorView donorView;
-	public static int donorId;
+	public static int donorId; 
 	
 	public LoginController(Login view, LoginModel model) {
 		this.loginview = view;
@@ -25,6 +26,7 @@ public class LoginController implements ActionListener {
 		// Add action listeners to view components
 		view.getLoginButton().addActionListener(this);
 		view.getCloseButton().addActionListener(this);
+		view.getBackButton().addActionListener(this);
 	}
 
 	@Override
@@ -73,6 +75,11 @@ public class LoginController implements ActionListener {
 		} else if (e.getSource() == loginview.getCloseButton()) {
 			// Close button action
 			loginview.dispose(); // Close the login window
+		}else if(e.getSource() == loginview.getBackButton()) {
+			Acceuil acc = new Acceuil();
+			acc.setVisible();
+			loginview.dispose();
+			AcceuilController accController = new AcceuilController(acc);
 		}
 	}
 }

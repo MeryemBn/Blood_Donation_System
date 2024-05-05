@@ -1,5 +1,8 @@
 package views;
 import javax.swing.*;
+
+import utils.DraggableFrameUtil;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -144,6 +147,7 @@ public class RegisterView extends JFrame {
 
         getContentPane().add(imagePanel, BorderLayout.WEST);
         getContentPane().add(formPanel, BorderLayout.CENTER);
+        DraggableFrameUtil.makeDraggable(this);
     }
 
     public JTextField getNomField() {

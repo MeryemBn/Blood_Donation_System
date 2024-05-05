@@ -21,6 +21,7 @@ public class DonorsListController implements ActionListener {
 	private DonorsListModel model;
 	private AddDonorView addView;
 	private UpdateDonorView updateDonorView;
+	int selectedId;
 
 	public DonorsListController(DonorsListView view, AddDonorView addView, UpdateDonorView updateDonorView,
 			DonorsListModel model) {
@@ -116,14 +117,13 @@ public class DonorsListController implements ActionListener {
 		} else {
 			updateDonorView.dispose();
 		}
-		// source == updateDonorView.getCancelButtonUpdate()
 	}
 
 	public void onAddButtonClicked() {
 		// Check if any field is empty
 		if (addView.getFullNameField().getText().isEmpty() || addView.getAgeField().getText().isEmpty()
 				|| addView.getAddressField().getText().isEmpty() || addView.getPhoneNumberField().getText().isEmpty()) {
-			JOptionPane.showMessageDialog(addView, "All fields are required.", "Field(s) Empty",
+			JOptionPane.showMessageDialog(addView, "All fields are required.", "Missing Information",
 					JOptionPane.ERROR_MESSAGE);
 		} else {
 
@@ -146,8 +146,8 @@ public class DonorsListController implements ActionListener {
 
 				initAddView();
 				addView.dispose();
-		        
-		        // Create a new instance of DashboardView and update its data
+
+				// Create a new instance of DashboardView and update its data
 			} else {
 				JOptionPane.showMessageDialog(addView, "Failed to add donor.", "Error", JOptionPane.ERROR_MESSAGE);
 			}
@@ -165,7 +165,7 @@ public class DonorsListController implements ActionListener {
 					JOptionPane.WARNING_MESSAGE);
 		} else {
 			int option = JOptionPane.showConfirmDialog(view, "Are you sure you want to delete the selected donor?",
-					"Confirm Update", JOptionPane.YES_NO_OPTION);
+					"Confirm Delete", JOptionPane.YES_NO_OPTION);
 			if (option == JOptionPane.YES_OPTION) {
 				// If a row is selected, retrieve the ID
 				int id = (int) view.getDonorTable().getValueAt(selectedRow, 0);
@@ -183,8 +183,6 @@ public class DonorsListController implements ActionListener {
 			}
 		}
 	}
-
-	int selectedId;
 
 	public void onUpdateButtonClicked() {
 		// Check if a row is selected
@@ -224,35 +222,41 @@ public class DonorsListController implements ActionListener {
 	}
 
 	public void onSaveButtonClicked() {
-
-		String fullName = updateDonorView.getFullNameField().getText();
-		String bloodGroup = (String) updateDonorView.getBloodGroupComboBox().getSelectedItem();
-
-		String gender = "";
-		if (updateDonorView.getFemaleRadioButton().isSelected()) {
-			gender = "Female";
-		} else if (updateDonorView.getMaleRadioButton().isSelected()) {
-			gender = "Male";
-		}
-
-		int age = Integer.parseInt(updateDonorView.getAgeField().getText());
-		String address = updateDonorView.getAddressField().getText();
-		long phoneNumber = Long.parseLong(updateDonorView.getPhoneNumberField().getText());
-
-		// Call the updateDonor function
-		boolean updated = model.updateDonor(selectedId, fullName, bloodGroup, gender, age, address, phoneNumber);
-
-		if (updated) {
-			JOptionPane.showMessageDialog(addView, "Donor updated successfully!", "Success",
-					JOptionPane.INFORMATION_MESSAGE);
-
-			updateDonorView.dispose();
-			initView();
-
+		// Check if any field is empty
+		if (updateDonorView.getFullNameField().getText().isEmpty() || updateDonorView.getAgeField().getText().isEmpty()
+				|| updateDonorView.getAddressField().getText().isEmpty()
+				|| updateDonorView.getPhoneNumberField().getText().isEmpty()) {
+			JOptionPane.showMessageDialog(addView, "All fields are required.", "Field(s) Empty",
+					JOptionPane.ERROR_MESSAGE);
 		} else {
-			JOptionPane.showMessageDialog(view, "Failed to update donor.", "Error", JOptionPane.ERROR_MESSAGE);
-		}
+			String fullName = updateDonorView.getFullNameField().getText();
+			String bloodGroup = (String) updateDonorView.getBloodGroupComboBox().getSelectedItem();
 
+			String gender = "";
+			if (updateDonorView.getFemaleRadioButton().isSelected()) {
+				gender = "Female";
+			} else if (updateDonorView.getMaleRadioButton().isSelected()) {
+				gender = "Male";
+			}
+
+			int age = Integer.parseInt(updateDonorView.getAgeField().getText());
+			String address = updateDonorView.getAddressField().getText();
+			long phoneNumber = Long.parseLong(updateDonorView.getPhoneNumberField().getText());
+
+			// Call the updateDonor function
+			boolean updated = model.updateDonor(selectedId, fullName, bloodGroup, gender, age, address, phoneNumber);
+
+			if (updated) {
+				JOptionPane.showMessageDialog(addView, "Donor updated successfully!", "Success",
+						JOptionPane.INFORMATION_MESSAGE);
+
+				updateDonorView.dispose();
+				initView();
+
+			} else {
+				JOptionPane.showMessageDialog(view, "Failed to update donor.", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
 	}
 
 	private void showAddDonorView() {

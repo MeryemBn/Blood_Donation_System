@@ -52,7 +52,7 @@ public class BloodGroupView extends JFrame {
 		JTableHeader header = dataTable.getTableHeader();
 		header.setBackground(new Color(63, 81, 181));
 		header.setForeground(Color.WHITE);
-		header.setFont(new Font("Arial", Font.BOLD, 16));
+		header.setFont(new Font("Arial", Font.PLAIN, 18));
 		dataTable.setRowHeight(30);
 		dataTable.setFont(new Font("Arial", Font.PLAIN, 16));
 		scrollPane.setBorder(BorderFactory.createEmptyBorder(40, 10, 10, 10));

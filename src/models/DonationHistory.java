@@ -3,11 +3,20 @@ package models;
 import java.util.Date;
 
 public class DonationHistory {
+	int id;
 	private String bloodGroup;
 	private int donorId;
 	private Date date;
 	private String time;
 	private int AmountDonated;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getBloodGroup() {
 		return bloodGroup;

@@ -7,6 +7,9 @@ import org.jfree.chart.labels.PieSectionLabelGenerator;
 import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.general.DefaultPieDataset;
+
+import utils.DraggableFrameUtil;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -207,6 +210,7 @@ public class Acceuil {
 		
 		///////////////////////////////////////////////////////////////FIN///////////////////////////////////////////////////////////////////////////////////////
 		// Center the frame on the screen
+		DraggableFrameUtil.makeDraggable(frame);
 		frame.setLocationRelativeTo(null);
 		//frame.setVisible(true);
 		}

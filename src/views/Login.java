@@ -1,6 +1,9 @@
 package views;
 
 import javax.swing.*;
+
+import utils.DraggableFrameUtil;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -94,6 +97,7 @@ public class Login extends JFrame {
         lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/images/background.jpg")));
         lblNewLabel.setBounds(-125, 0, 891, 468);
         mainPanel.add(lblNewLabel);
+        DraggableFrameUtil.makeDraggable(this);
         setVisible(true);
 
     }

@@ -28,15 +28,16 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import controllers.BloodGroupController;
+import controllers.DonationsListController;
 import controllers.DonorsListController;
 import models.BloodGroupList;
 import models.BloodGroupListModel;
+import models.DonationsListModel;
 import models.DonorsListModel;
 import models.RendezvousListeModel;
+import utils.DraggableFrameUtil;
 import views.RendezvousListeView;
 import controllers.RendezvousListeController;
-
-
 
 public class AdminView extends JFrame {
 	private JFrame frame;
@@ -63,19 +64,22 @@ public class AdminView extends JFrame {
 	private UpdateDonorView updateDonorView;
 	private DonorsListController donorsListController;
 
+	private DonationsListView donationsListView;
+	private AddDonationsView adddonationView;
+	private UpdateDonationsView updatedonationView;
+	private DonationsListModel donationsListModel;
+	private DonationsListController donationsListController;
+
 	public AdminView() {
 		frame = new JFrame("Accueil Admin");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setUndecorated(true);
 		frame.setSize(1540, 830);
-		/*GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice gd = ge.getDefaultScreenDevice();
-        gd.setFullScreenWindow(frame);*/
 		
 		// Create a panel for the title bar
 		titlePanel = new JPanel();
-		titlePanel.setLayout(new FlowLayout(FlowLayout.RIGHT)); // Align components to the right
-		titlePanel.setBackground(new Color(206, 0, 0)); // Set background color of the title bar
+		titlePanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		titlePanel.setBackground(new Color(206, 0, 0));
 		titlePanel.setPreferredSize(new Dimension(1100, 45));
 
 		titleLabel = new JLabel("Blood Donation System");
@@ -150,36 +154,39 @@ public class AdminView extends JFrame {
 		tabbedPane = new JTabbedPane();
 		tabbedPane.setBorder(BorderFactory.createEmptyBorder(-9, -2, -2, -2));
 
-		DashboardView dashboardView = new DashboardView(); // Create an instance of DashboardView
-		tabbedPane.addTab("1", null, dashboardView.getMainPanel(), null); // Call getMainPanel() on the instance
+		// Add dashboard
+		DashboardView dashboardView = new DashboardView();
+		tabbedPane.addTab("1", null, dashboardView.getMainPanel(), null);
 
-		tabPanel2 = createTabPanel(Color.BLUE);
-
-		tabPanel4 = createTabPanel(Color.RED);
-		tabPanel5 = createTabPanel(Color.YELLOW);
-		
-		 BloodGroupListModel bloodModel = new BloodGroupListModel();
-         List<BloodGroupList> data = bloodModel.getAllPacks();
-         BloodGroupView bloodView = new BloodGroupView(data);
-         BloodGroupController bloodController = new BloodGroupController(bloodView, bloodModel);
-		
+		// Add blood group list
+		BloodGroupListModel bloodModel = new BloodGroupListModel();
+		List<BloodGroupList> data = bloodModel.getAllPacks();
+		BloodGroupView bloodView = new BloodGroupView(data);
+		BloodGroupController bloodController = new BloodGroupController(bloodView, bloodModel);
 		tabbedPane.addTab("2", bloodView.getBloodPanel());
-		
+
 		// Add donors list
 		donorsListView = new DonorsListView();
 		addDonorView = new AddDonorView();
 		updateDonorView = new UpdateDonorView();
 		donorsListModel = new DonorsListModel();
 		donorsListController = new DonorsListController(donorsListView, addDonorView, updateDonorView, donorsListModel);
-		tabbedPane.addTab("3",donorsListView.getMainPanel());
-		
-		tabbedPane.addTab("4", tabPanel4);
-		
-		 RendezvousListeModel model = new RendezvousListeModel();
-	     RendezvousListeView view = new RendezvousListeView();
-	     RendezvousListeController controller = new RendezvousListeController(model, view);
-	     
-	     controller.displayRendezvousList();
+		tabbedPane.addTab("3", donorsListView.getMainPanel());
+
+		// Add donations list
+		donationsListView = new DonationsListView();
+		adddonationView = new AddDonationsView();
+		updatedonationView = new UpdateDonationsView();
+		donationsListModel = new DonationsListModel();
+		donationsListController = new DonationsListController(donationsListView, adddonationView, updatedonationView,
+				donationsListModel);
+		tabbedPane.addTab("4", donationsListView.getMainPanel());
+
+		// Add appointment list
+		RendezvousListeModel model = new RendezvousListeModel();
+		RendezvousListeView view = new RendezvousListeView();
+		RendezvousListeController controller = new RendezvousListeController(model, view);
+		controller.displayRendezvousList();
 		tabbedPane.addTab("5", view.getMainPanel());
 
 		// Hide the default navigation buttons
@@ -188,6 +195,7 @@ public class AdminView extends JFrame {
 		}
 
 		frame.add(tabbedPane, BorderLayout.CENTER);
+		DraggableFrameUtil.makeDraggable(frame);
 		// Center the frame on the screen
 		frame.setLocationRelativeTo(null);
 	}

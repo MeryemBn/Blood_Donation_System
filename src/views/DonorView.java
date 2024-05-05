@@ -21,6 +21,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import controllers.PriseRendezVousControleur;
+import utils.DraggableFrameUtil;
 
 public class DonorView extends JFrame {
 	private JFrame frame;
@@ -139,6 +140,8 @@ public class DonorView extends JFrame {
 
 		// Center the frame on the screen
 		frame.setLocationRelativeTo(null);
+		
+		DraggableFrameUtil.makeDraggable(frame);
 	}
 
 	private JButton createButton(String text) {

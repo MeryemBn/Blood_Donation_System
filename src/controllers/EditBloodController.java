@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 import models.BloodGroupList;
 import models.BloodGroupListModel;
 import models.BloodListModel;
@@ -32,7 +34,10 @@ public class EditBloodController implements ActionListener{
             int quantity = view.getQuantity();
             if (!bloodGroup.isEmpty() && quantity != 0) {
             	editPack(bloodGroup, quantity);
-            } 
+            } else {
+            	JOptionPane.showMessageDialog(view, "Quantity Required", "Missing Information",
+						JOptionPane.WARNING_MESSAGE);
+            }
         }else if (e.getSource() == view.getCancelButton()) {
         	view.dispose();
         }

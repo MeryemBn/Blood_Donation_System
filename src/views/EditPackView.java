@@ -15,6 +15,7 @@ import java.awt.FlowLayout;
 import javax.swing.*;
 
 import models.BloodGroupList;
+import utils.DraggableFrameUtil;
 
 public class EditPackView extends JFrame {
     private JTextField bloodGroupField;
@@ -29,7 +30,8 @@ public class EditPackView extends JFrame {
         setSize(500, 300);
         setUndecorated(true);
         setLocationRelativeTo(null);
-        
+        getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, new Color(63, 81, 181))); // Ajouter des marges au contenu de la fenêtre
+
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         updateButton = new JButton("Update");
         updateButton.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -102,6 +104,7 @@ public class EditPackView extends JFrame {
 
         // Set visibility
         setVisible(true);
+        DraggableFrameUtil.makeDraggable(this);
     }
 
     // Method to retrieve edited blood group

@@ -18,6 +18,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import utils.DraggableFrameUtil;
+
 public class AddDonorView extends JFrame {
 	JButton saveButton;
 	JButton cancelButton;
@@ -38,6 +40,8 @@ public class AddDonorView extends JFrame {
 		setSize(500, 300);
 		// Ensure the frame can't be resized smaller than its preferred size
 		setMinimumSize(new Dimension(500, 300));
+        setUndecorated(true);
+        getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, new Color(63, 81, 181))); 
 
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		mainPanel.setBackground(Color.white);
@@ -49,30 +53,30 @@ public class AddDonorView extends JFrame {
 
 		// create labels and fields
 		JLabel fullNameLabel = new JLabel("Full Name:");
-		fullNameLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+		fullNameLabel.setFont(new Font("Arial", Font.BOLD ,17));
 		fullNameField = new JTextField();
-		fullNameField.setFont(new Font("Arial", Font.PLAIN, 14));
+		fullNameField.setFont(new Font("Arial", Font.PLAIN, 16));
 		fullNameField.setPreferredSize(new Dimension(fullNameField.getPreferredSize().width, 30)); // Adjust height
 
 		JLabel bloodGroupLabel = new JLabel("Blood Group:");
-		bloodGroupLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+		bloodGroupLabel.setFont(new Font("Arial", Font.BOLD ,17));
 		// Create a JComboBox for blood type
 		bloodGroupComboBox = new JComboBox<>(bloodTypes);
-		bloodGroupComboBox.setFont(new Font("Arial", Font.PLAIN, 15));
+		bloodGroupComboBox.setFont(new Font("Arial", Font.PLAIN, 16));
 		bloodGroupComboBox.setBackground(Color.WHITE);
 		bloodGroupComboBox.setForeground(Color.BLACK);
 
 		JLabel genderLabel = new JLabel("Gender:");
-		genderLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+		genderLabel.setFont(new Font("Arial", Font.BOLD ,17));
 
 		// Create radio buttons
 		femaleRadioButton = new JRadioButton("Female");
 		femaleRadioButton.setBackground(new Color(255, 255, 255));
-		femaleRadioButton.setFont(new Font("Arial", Font.PLAIN, 15));
+		femaleRadioButton.setFont(new Font("Arial", Font.PLAIN, 16));
 		femaleRadioButton.setForeground(Color.BLACK);
 		maleRadioButton = new JRadioButton("Male");
 		maleRadioButton.setBackground(new Color(255, 255, 255));
-		maleRadioButton.setFont(new Font("Arial", Font.PLAIN, 15));
+		maleRadioButton.setFont(new Font("Arial", Font.PLAIN, 16));
 		maleRadioButton.setForeground(Color.BLACK);
 
 		// Create a JPanel to hold the radio buttons
@@ -82,21 +86,21 @@ public class AddDonorView extends JFrame {
 		genderPanel.add(maleRadioButton);
 
 		JLabel ageLabel = new JLabel("Age:");
-		ageLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+		ageLabel.setFont(new Font("Arial", Font.BOLD ,17));
 		ageField = new JTextField();
-		ageField.setFont(new Font("Arial", Font.PLAIN, 14));
+		ageField.setFont(new Font("Arial", Font.PLAIN, 16));
 		ageField.setPreferredSize(new Dimension(ageField.getPreferredSize().width, 30));
 
 		JLabel addressLabel = new JLabel("Address:");
-		addressLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+		addressLabel.setFont(new Font("Arial", Font.BOLD ,17));
 		addressField = new JTextField();
-		addressField.setFont(new Font("Arial", Font.PLAIN, 14));
+		addressField.setFont(new Font("Arial", Font.PLAIN, 16));
 		addressField.setPreferredSize(new Dimension(addressField.getPreferredSize().width, 30));
 
 		JLabel phoneNumberLabel = new JLabel("Phone Number:");
-		phoneNumberLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+		phoneNumberLabel.setFont(new Font("Arial", Font.BOLD ,17));
 		phoneNumberField = new JTextField();
-		phoneNumberField.setFont(new Font("Arial", Font.PLAIN, 14));
+		phoneNumberField.setFont(new Font("Arial", Font.PLAIN, 16));
 		phoneNumberField.setPreferredSize(new Dimension(phoneNumberField.getPreferredSize().width, 30));
 
 		// Add labels and fields to form panel
@@ -130,6 +134,8 @@ public class AddDonorView extends JFrame {
 
 		pack();
 		setLocationRelativeTo(null);
+		DraggableFrameUtil.makeDraggable(this);
+
 	}
 
 	public JTextField getFullNameField() {

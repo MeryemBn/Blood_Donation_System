@@ -126,7 +126,7 @@ public class RendezvousListeModel {
             String sql = "UPDATE rendezvous SET nom=?, prenom=?, groupe_sanguin=?, date_rendezvous=?, heure_rendezvous=? WHERE id=?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             
-            // Définir les paramètres pour la requête préparée
+            
             pstmt.setString(1, rendezvous.getNom());
             pstmt.setString(2, rendezvous.getPrenom());
             pstmt.setString(3, rendezvous.getGroupeSanguin());
@@ -143,19 +143,14 @@ public class RendezvousListeModel {
             pstmt.setDate(4, sqlDate);
             pstmt.setTime(5, sqlTime);
             
-            // Définir l'ID du rendez-vous à mettre à jour
+           
             pstmt.setInt(6, rendezvous.getId());
-            
-            // Exécuter la mise à jour
             pstmt.executeUpdate();
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
-    
-    
-    
 
     public void closeConnection() {
         try {

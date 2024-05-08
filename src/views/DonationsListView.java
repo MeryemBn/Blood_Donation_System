@@ -34,7 +34,7 @@ public class DonationsListView extends JFrame {
 		super("Recent Donations List");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(844, 660);
-		setLocationRelativeTo(null); // Center the frame on the screen
+		setLocationRelativeTo(null);
 
 		// Create a panel with grey background and BorderLayout
 		mainPanel = new JPanel(new BorderLayout());
@@ -83,7 +83,7 @@ public class DonationsListView extends JFrame {
 		header.setFont(new Font("Arial", Font.PLAIN, 18));
 		donationsTable.setRowHeight(30);
 		donationsTable.setFont(new Font("Arial", Font.PLAIN, 16));
-		scrollPane.setBorder(BorderFactory.createEmptyBorder(40, 10, 10, 10)); // Add padding around the table
+		scrollPane.setBorder(BorderFactory.createEmptyBorder(40, 10, 10, 10)); 
 
 		// Add table panel to main panel
 		mainPanel.add(scrollPane, BorderLayout.CENTER);
@@ -100,9 +100,6 @@ public class DonationsListView extends JFrame {
 
 		// Add the main panel to the frame
 		getContentPane().add(mainPanel);
-
-		// Make the frame visible
-		// setVisible(true);
 	}
 
 	public void displayDonations(List<DonationHistory> donations) {

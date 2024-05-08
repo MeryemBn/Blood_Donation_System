@@ -62,7 +62,7 @@ public class UpdateDonationsView extends JFrame {
 		bloodGroupLabel.setFont(new Font("Arial", Font.BOLD ,17));
 		bloodGroupField = new JTextField();
 		bloodGroupField.setFont(new Font("Arial", Font.PLAIN, 16));
-		bloodGroupField.setPreferredSize(new Dimension(bloodGroupField.getPreferredSize().width, 30)); // Adjust height
+		bloodGroupField.setPreferredSize(new Dimension(bloodGroupField.getPreferredSize().width, 30)); 
 		bloodGroupField.setEnabled(false);
 
 		// create labels and fields
@@ -70,7 +70,7 @@ public class UpdateDonationsView extends JFrame {
 		amountLabel.setFont(new Font("Arial", Font.BOLD ,17));
 		amountField = new JTextField();
 		amountField.setFont(new Font("Arial", Font.PLAIN, 16));
-		amountField.setPreferredSize(new Dimension(amountLabel.getPreferredSize().width, 30)); // Adjust height
+		amountField.setPreferredSize(new Dimension(amountLabel.getPreferredSize().width, 30)); 
 
 		formPanel.add(donationDateLabel);
 		formPanel.add(donationDateSpinner);

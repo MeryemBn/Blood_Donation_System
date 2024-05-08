@@ -45,13 +45,6 @@ public class DonationsListController implements ActionListener {
 		view.displayDonations(donations);
 	}
 
-	public static void main(String[] args) {
-		DonationsListView view = new DonationsListView();
-		DonationsListModel model = new DonationsListModel();
-		AddDonationsView AddDonation = new AddDonationsView();
-		UpdateDonationsView updateDonation = new UpdateDonationsView();
-		new DonationsListController(view, AddDonation, updateDonation, model);
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

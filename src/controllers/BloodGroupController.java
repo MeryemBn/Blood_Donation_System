@@ -51,16 +51,5 @@ public class BloodGroupController {
     }
 
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            // Create the model, view, and controller
-        	
-            BloodGroupListModel bloodModel = new BloodGroupListModel();
-            BloodGroupView bloodView = new BloodGroupView(bloodModel.getAllPacks());
-            BloodGroupController bloodController = new BloodGroupController(bloodView, bloodModel);
-
-            // Display the admin view
-            bloodView.setVisible(true);
-        });
-    }
+   
 }

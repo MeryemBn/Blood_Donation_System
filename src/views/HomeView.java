@@ -28,12 +28,12 @@ public class HomeView extends JFrame {
 	private JPanel homePanel;
 	private JLabel textLabel;
 
-	public HomeView(String username) { 
+	public HomeView(String username) {
 		Font f4 = new Font(Font.DIALOG_INPUT, Font.BOLD | Font.ITALIC, 20);
 		homePanel = new JPanel();
 		homePanel.setLayout(new BorderLayout());
 		homePanel.setBackground(new Color(255, 255, 255));
-		homePanel.setBorder(new EmptyBorder(20, 0, 20, 0)); 
+		homePanel.setBorder(new EmptyBorder(20, 0, 20, 0));
 
 		textLabel = new JLabel("Welcome " + username + ", take an appointment and save many lives!");
 		textLabel.setFont(f4);
@@ -63,8 +63,14 @@ public class HomeView extends JFrame {
 				BorderFactory.createEmptyBorder(10, 10, 10, 10))); // Add border radius
 		imageLabel.setPreferredSize(new Dimension(370, 250)); // Set preferred size
 
-		// Add the components to the homePanel
-		homePanel.add(imageLabel, BorderLayout.EAST);
+		// Create a panel to contain the image label and add margin to the right
+		JPanel imagePanel = new JPanel(new BorderLayout());
+		imagePanel.add(imageLabel, BorderLayout.CENTER);
+		imagePanel.setBackground(getForeground());
+		imagePanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 120)); // Add 20 pixels margin to the right
+
+		// Add the panel containing the image label to the homePanel
+		homePanel.add(imagePanel, BorderLayout.EAST);
 
 		JPanel descriptionPanel = new JPanel();
 		descriptionPanel.setLayout(new BorderLayout());
@@ -127,23 +133,23 @@ public class HomeView extends JFrame {
 			bloodGroupLabel.setForeground(Color.RED);
 			bloodGroupLabel.setPreferredSize(new Dimension(10, 10));
 			descriptionLabel.setPreferredSize(new Dimension(10, 10));
-			bloodGroupLabel.setBorder(BorderFactory.createEmptyBorder(20,160, 0, 0));
-			
+			bloodGroupLabel.setBorder(BorderFactory.createEmptyBorder(20, 160, 0, 0));
+
 			bloodGroupPanel.add(bloodGroupLabel);
 
-		 	// Add description area to blood group panel 
+			// Add description area to blood group panel
 			bloodGroupPanel.add(descriptionAreas[i]);
 
 		}
-		bloodGroupPanel.setBorder(BorderFactory.createEmptyBorder(0,50, 80, 170));
-		 // Add the blood group panel to the homePanel 
- 
-		homePanel.add(bloodGroupPanel, BorderLayout.SOUTH); 
-		 // Add the content panel to the first tab 
+		bloodGroupPanel.setBorder(BorderFactory.createEmptyBorder(0, 50, 80, 170));
+		// Add the blood group panel to the homePanel
 
-	} 
+		homePanel.add(bloodGroupPanel, BorderLayout.SOUTH);
+		// Add the content panel to the first tab
+
+	}
 
 	public JPanel getMainPanel() {
-		return homePanel; 
+		return homePanel;
 	}
 }

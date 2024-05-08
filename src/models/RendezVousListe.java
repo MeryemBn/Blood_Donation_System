@@ -25,7 +25,7 @@ public class RendezVousListe {
     
     public RendezVousListe() {}
 
-    // Getters et setters
+    
     public int getId() {
         return id;
     }

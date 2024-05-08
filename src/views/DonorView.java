@@ -49,8 +49,8 @@ public class DonorView extends JFrame {
 
 		// Create a panel for the title bar
 		titlePanel = new JPanel();
-		titlePanel.setLayout(new FlowLayout(FlowLayout.RIGHT)); // Align components to the right
-		titlePanel.setBackground(new Color(206, 0, 0)); // Set background color of the title bar
+		titlePanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		titlePanel.setBackground(new Color(206, 0, 0));
 		titlePanel.setPreferredSize(new Dimension(1100, 45)); 
 
 		titleLabel = new JLabel("Blood Donation System");
@@ -76,7 +76,6 @@ public class DonorView extends JFrame {
 		frame.getContentPane().add(titlePanel, BorderLayout.NORTH);
 
 		// Create the menu panel
-		
 		menuPanel = new JPanel();
 		menuPanel.setBackground(new Color(206, 0, 0));
 		menuPanel.setPreferredSize(new Dimension(270, 600));
@@ -133,12 +132,11 @@ public class DonorView extends JFrame {
 		
 		// Hide the default navigation buttons
 		for (int i = 0; i < tabbedPane.getTabCount(); i++) {
-			tabbedPane.setTabComponentAt(i, new JLabel()); // Use an empty JLabel as the tab component
+			tabbedPane.setTabComponentAt(i, new JLabel());
 		}
 
 		frame.add(tabbedPane, BorderLayout.CENTER);
 
-		// Center the frame on the screen
 		frame.setLocationRelativeTo(null);
 		
 		DraggableFrameUtil.makeDraggable(frame);

@@ -2,10 +2,7 @@ package controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JOptionPane;
-
-import models.AdminModel;
 import models.LoginModel;
 import controllers.LoginController;
 import views.AdminView;
@@ -13,11 +10,9 @@ import views.Login;
 
 public class AdminController implements ActionListener {
     private AdminView adminview;
-    private AdminModel model;
     private Login loginview;
 
-    public AdminController(AdminView view, AdminModel model) {
-        this.model = model;
+    public AdminController(AdminView view) {
         this.adminview = view;
 
         // Add action listeners to view components

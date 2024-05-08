@@ -19,7 +19,7 @@ public class Login extends JFrame {
     public Login() {
         setTitle("Login");
         setSize(766, 468);
-        setUndecorated(true); // Remove frame title bar
+        setUndecorated(true); 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);

@@ -33,10 +33,10 @@ public class RegisterView extends JFrame {
 
         // Panel for the title bar
         JPanel titlePanel = new JPanel(new BorderLayout());
-        titlePanel.setBackground(new Color(206, 0, 0)); // Set the background color
+        titlePanel.setBackground(new Color(206, 0, 0)); 
         JLabel titleLabel = new JLabel("Register");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 18)); // Set the font and size
-        titleLabel.setForeground(Color.WHITE); // Set the foreground color
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 18)); 
+        titleLabel.setForeground(Color.WHITE);
         titleLabel.setBorder(BorderFactory.createEmptyBorder(10, 300, 10, 10));
         titlePanel.add(titleLabel, BorderLayout.CENTER);
         titlePanel.setBorder(BorderFactory.createEmptyBorder(6, 20, 6, 20));
@@ -50,7 +50,6 @@ public class RegisterView extends JFrame {
         closeButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         
         backButton= new JButton(new ImageIcon(getClass().getResource("/images/backIcon.png")));
-        //backButton.setBounds(15, 0, 59, 54);
         backButton.setFont(new Font("Arial", Font.PLAIN, 16));
         backButton.setForeground(Color.WHITE);
         backButton.setBorder(BorderFactory.createEmptyBorder());
@@ -67,7 +66,7 @@ public class RegisterView extends JFrame {
         JLabel imageLabel = new JLabel();
         imageLabel.setBackground(new Color(156, 183, 243));
         imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        URL imageURL = getClass().getResource("/images/homeimg.jpg"); // Replace "your_image.jpg" with the path to your image
+        URL imageURL = getClass().getResource("/images/homeimg.jpg"); 
         ImageIcon imageIcon = new ImageIcon(imageURL);
         Image image = imageIcon.getImage(); // transform it
         Image newImg = image.getScaledInstance(370, 468, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
@@ -78,49 +77,49 @@ public class RegisterView extends JFrame {
         // Panel for the form
         JPanel formPanel = new JPanel();
         formPanel.setLayout(new GridLayout(10, 2, 5, 5));
-        formPanel.setBackground(Color.WHITE); // Set background color
+        formPanel.setBackground(Color.WHITE); 
         formPanel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
         
         JLabel nomLabel = new JLabel("Nom:");
-        nomLabel.setFont(new Font("Dubai", Font.ITALIC|Font.BOLD, 16)); // Set font and size
+        nomLabel.setFont(new Font("Dubai", Font.ITALIC|Font.BOLD, 16));
         nomField = new JTextField();
-        nomField.setFont(new Font("Dubai", Font.ITALIC, 16)); // Set font and size
+        nomField.setFont(new Font("Dubai", Font.ITALIC, 16));
         JLabel groupeSanguinLabel = new JLabel("Groupe Sanguin:");
-        groupeSanguinLabel.setFont(new Font("Dubai", Font.ITALIC |Font.BOLD, 16)); // Set font and size
+        groupeSanguinLabel.setFont(new Font("Dubai", Font.ITALIC |Font.BOLD, 16));
         String[] groupeSanguinOptions = {"A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"};
         groupeSanguinComboBox = new JComboBox<>(groupeSanguinOptions);
-        groupeSanguinComboBox.setFont(new Font("Dubai", Font.ITALIC, 16)); // Set font and size
+        groupeSanguinComboBox.setFont(new Font("Dubai", Font.ITALIC, 16));
         JLabel sexLabel = new JLabel("Sex:");
-        sexLabel.setFont(new Font("Dubai", Font.ITALIC|Font.BOLD, 16)); // Set font and size
+        sexLabel.setFont(new Font("Dubai", Font.ITALIC|Font.BOLD, 16)); 
         maleRadioButton = new JRadioButton("Male");
-        maleRadioButton.setFont(new Font("Dubai", Font.ITALIC, 16)); // Set font and size
+        maleRadioButton.setFont(new Font("Dubai", Font.ITALIC, 16));
         femaleRadioButton = new JRadioButton("Female");
-        femaleRadioButton.setFont(new Font("Dubai", Font.ITALIC, 16)); // Set font and size
+        femaleRadioButton.setFont(new Font("Dubai", Font.ITALIC, 16));
         ButtonGroup sexButtonGroup = new ButtonGroup();
         sexButtonGroup.add(maleRadioButton);
         sexButtonGroup.add(femaleRadioButton);
         JLabel ageLabel = new JLabel("Age:");
-        ageLabel.setFont(new Font("Dubai", Font.ITALIC|Font.BOLD, 16)); // Set font and size
+        ageLabel.setFont(new Font("Dubai", Font.ITALIC|Font.BOLD, 16));
         ageField = new JTextField();
-        ageField.setFont(new Font("Dubai", Font.ITALIC, 16)); // Set font and size
+        ageField.setFont(new Font("Dubai", Font.ITALIC, 16)); 
         JLabel adresseLabel = new JLabel("Adresse:");
-        adresseLabel.setFont(new Font("Dubai", Font.ITALIC|Font.BOLD, 16)); // Set font and size
+        adresseLabel.setFont(new Font("Dubai", Font.ITALIC|Font.BOLD, 16)); 
         adresseField = new JTextField();
-        adresseField.setFont(new Font("Dubai", Font.ITALIC, 16)); // Set font and size
+        adresseField.setFont(new Font("Dubai", Font.ITALIC, 16)); 
         JLabel numTelLabel = new JLabel("Numéro de Téléphone:");
-        numTelLabel.setFont(new Font("Dubai", Font.ITALIC|Font.BOLD, 16)); // Set font and size
+        numTelLabel.setFont(new Font("Dubai", Font.ITALIC|Font.BOLD, 16)); 
         numTelField = new JTextField();
-        numTelField.setFont(new Font("Dubai", Font.ITALIC, 16)); // Set font and size
+        numTelField.setFont(new Font("Dubai", Font.ITALIC, 16)); 
         JLabel usernameLabel = new JLabel("Username:");
-        usernameLabel.setFont(new Font("Dubai", Font.ITALIC|Font.BOLD, 16)); // Set font and size
+        usernameLabel.setFont(new Font("Dubai", Font.ITALIC|Font.BOLD, 16)); 
         usernameField = new JTextField();
-        usernameField.setFont(new Font("Dubai", Font.ITALIC, 16)); // Set font and size
+        usernameField.setFont(new Font("Dubai", Font.ITALIC, 16)); 
         JLabel passwordLabel = new JLabel("Password:");
-        passwordLabel.setFont(new Font("Dubai", Font.ITALIC|Font.BOLD, 16)); // Set font and size
+        passwordLabel.setFont(new Font("Dubai", Font.ITALIC|Font.BOLD, 16)); 
         passwordField = new JPasswordField();
-        passwordField.setFont(new Font("Dubai", Font.ITALIC, 16)); // Set font and size
+        passwordField.setFont(new Font("Dubai", Font.ITALIC, 16));
         registerButton = new JButton("Register");
-        registerButton.setFont(new Font("Dubai", Font.ITALIC |Font.BOLD, 22)); // Set font and size
+        registerButton.setFont(new Font("Dubai", Font.ITALIC |Font.BOLD, 22));
         registerButton.setBackground(new Color(206, 0, 0));
         registerButton.setForeground(Color.WHITE);
 
@@ -130,7 +129,7 @@ public class RegisterView extends JFrame {
         formPanel.add(groupeSanguinComboBox);
         formPanel.add(sexLabel);
         formPanel.add(maleRadioButton);
-        formPanel.add(new JLabel()); // Empty label for alignment
+        formPanel.add(new JLabel()); 
         formPanel.add(femaleRadioButton);
         formPanel.add(ageLabel);
         formPanel.add(ageField);
@@ -142,7 +141,7 @@ public class RegisterView extends JFrame {
         formPanel.add(usernameField);
         formPanel.add(passwordLabel);
         formPanel.add(passwordField);
-        formPanel.add(new JLabel()); // Empty label for alignment
+        formPanel.add(new JLabel()); 
         formPanel.add(registerButton);
 
         getContentPane().add(imagePanel, BorderLayout.WEST);

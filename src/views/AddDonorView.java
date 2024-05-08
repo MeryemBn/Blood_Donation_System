@@ -31,7 +31,6 @@ public class AddDonorView extends JFrame {
 	JTextField phoneNumberField;
 
 	JComboBox<String> bloodGroupComboBox;
-	// Define an array of blood types
 	String[] bloodTypes = { "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" };
 
 	public AddDonorView() {
@@ -56,10 +55,11 @@ public class AddDonorView extends JFrame {
 		fullNameLabel.setFont(new Font("Arial", Font.BOLD ,17));
 		fullNameField = new JTextField();
 		fullNameField.setFont(new Font("Arial", Font.PLAIN, 16));
-		fullNameField.setPreferredSize(new Dimension(fullNameField.getPreferredSize().width, 30)); // Adjust height
+		fullNameField.setPreferredSize(new Dimension(fullNameField.getPreferredSize().width, 30)); 
 
 		JLabel bloodGroupLabel = new JLabel("Blood Group:");
 		bloodGroupLabel.setFont(new Font("Arial", Font.BOLD ,17));
+		
 		// Create a JComboBox for blood type
 		bloodGroupComboBox = new JComboBox<>(bloodTypes);
 		bloodGroupComboBox.setFont(new Font("Arial", Font.PLAIN, 16));

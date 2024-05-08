@@ -90,13 +90,6 @@ public class DonorsListController implements ActionListener {
 		}
 	}
 
-	public static void main(String[] args) {
-		DonorsListView view = new DonorsListView();
-		DonorsListModel model = new DonorsListModel();
-		AddDonorView addView = new AddDonorView();
-		UpdateDonorView updateDonorView = new UpdateDonorView();
-		new DonorsListController(view, addView, updateDonorView, model);
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

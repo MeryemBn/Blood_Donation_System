@@ -28,15 +28,15 @@ public class DonationsHistoryView extends JFrame {
 
 	public DonationsHistoryView() {
 		super("Donation History");
-		mainPanel = new JPanel(new GridBagLayout());
+		mainPanel = new JPanel(new BorderLayout());
 		mainPanel.setBackground(new Color(255, 255, 255));
-		mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		mainPanel.setBorder(BorderFactory.createEmptyBorder(100, 10, 10, 10));
 
 		// Title panel
 		JPanel titlePanel = new JPanel(new BorderLayout());
 		JLabel titleLabel = new JLabel("Donation History");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setFont(new Font("Times New Roman", Font.BOLD, 40));
+		titleLabel.setFont(new Font("Times New Roman", Font.BOLD, 50));
 		titleLabel.setForeground(new Color(63, 81, 181));
 		titleLabel.setBackground(Color.WHITE);
 		titleLabel.setOpaque(true);
@@ -48,17 +48,14 @@ public class DonationsHistoryView extends JFrame {
 				"<html><div style='text-align: center;'>\"Thank you for your generous donations,<br>they are truly appreciated.\"</div></html>");
 
 		quoteLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		quoteLabel.setFont(new Font("Bell MT", Font.ITALIC, 25));
+		quoteLabel.setFont(new Font("Bell MT", Font.ITALIC, 30));
 		quoteLabel.setForeground(Color.red);
 		quoteLabel.setBackground(Color.WHITE);
 		quoteLabel.setOpaque(true);
 		quoteLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		titlePanel.add(quoteLabel, BorderLayout.SOUTH);
 
-		GridBagConstraints gbcTitle = new GridBagConstraints();
-		gbcTitle.gridx = 0;
-		gbcTitle.gridy = 0;
-		mainPanel.add(titlePanel, gbcTitle);
+		mainPanel.add(titlePanel, BorderLayout.NORTH);
 
 		// Table panel
 		JPanel tablePanel = new JPanel(new BorderLayout());
@@ -81,9 +78,6 @@ public class DonationsHistoryView extends JFrame {
 		donationTable.setFont(new Font("Arial", Font.BOLD, 14));
 		donationTable.setRowHeight(30);
 		donationTable.setShowGrid(true);
-		donationTable.setGridColor(Color.black);
-		donationTable.setSelectionBackground(Color.black);
-		donationTable.setSelectionForeground(Color.BLACK);
 
 		// Custom renderer for the header row to set blue background
 		donationTable.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
@@ -99,19 +93,15 @@ public class DonationsHistoryView extends JFrame {
 		});
 
 		JScrollPane scrollPane = new JScrollPane(donationTable);
-		scrollPane.setBorder(BorderFactory.createEmptyBorder()); // Remove the border
-		scrollPane.setPreferredSize(new Dimension(700, 200)); // Set preferred size for the scroll pane
+		scrollPane.setBorder(BorderFactory.createEmptyBorder()); 
+		scrollPane.setPreferredSize(new Dimension(700, 200)); 
 		scrollPane.getViewport().setBackground(Color.WHITE);
 		scrollPane.setBackground(new Color(255, 255, 255));
 		tablePanel.add(scrollPane, BorderLayout.CENTER);
 
-		GridBagConstraints gbcTable = new GridBagConstraints();
-		gbcTable.gridx = 0;
-		gbcTable.gridy = 1;
-		mainPanel.add(tablePanel, gbcTable);
+		mainPanel.add(tablePanel, BorderLayout.CENTER);
 
 		getContentPane().add(mainPanel, BorderLayout.CENTER);
-
 	}
 
 	public JPanel getMainPanel() {

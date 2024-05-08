@@ -17,7 +17,6 @@ public class RegisterModel {
     private String username;
     private String password;
 
-    // Constructor, getters, and setters
     public RegisterModel() {}
     
     public String getNom() {

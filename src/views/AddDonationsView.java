@@ -26,7 +26,6 @@ public class AddDonationsView extends JFrame {
 
 	private JSpinner donationDateSpinner;
 	JComboBox<String> DonorsNamesComboBox;
-	// Define an array of blood types
 	private JTextField bloodGroupField;
 	private JTextField amountField;
 	private JButton saveButton;
@@ -66,7 +65,7 @@ public class AddDonationsView extends JFrame {
 		bloodGroupLabel.setFont(new Font("Arial", Font.BOLD ,17));
 		bloodGroupField = new JTextField();
 		bloodGroupField.setFont(new Font("Arial", Font.PLAIN, 16));
-		bloodGroupField.setPreferredSize(new Dimension(bloodGroupField.getPreferredSize().width, 30)); // Adjust height
+		bloodGroupField.setPreferredSize(new Dimension(bloodGroupField.getPreferredSize().width, 30)); 
 		bloodGroupField.setEnabled(false);
 
 		// create labels and fields
@@ -74,7 +73,7 @@ public class AddDonationsView extends JFrame {
 		amountLabel.setFont(new Font("Arial", Font.BOLD ,17));
 		amountField = new JTextField();
 		amountField.setFont(new Font("Arial", Font.PLAIN, 16));
-		amountField.setPreferredSize(new Dimension(amountLabel.getPreferredSize().width, 30)); // Adjust height
+		amountField.setPreferredSize(new Dimension(amountLabel.getPreferredSize().width, 30)); 
 
 		formPanel.add(donationDateLabel);
 		formPanel.add(donationDateSpinner);

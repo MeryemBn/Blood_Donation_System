@@ -13,7 +13,7 @@ public class DonationsHistoryModel {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
-
+        //afficher l'historique de donations depuis db pour un donneur d'apres son id
 		try {
 			connection = DBConnection.getConnection();
 			statement = connection.prepareStatement("SELECT date, heure,qte_donnee FROM historiquedonation  WHERE donneur = ?");

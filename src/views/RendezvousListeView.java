@@ -31,7 +31,7 @@ public class RendezvousListeView extends JPanel {
 	private JSpinner heureRendezVousSpinner;
 
 	public RendezvousListeView() {
-		mainPanelListe = new JPanel(new BorderLayout()); // Change to BorderLayout
+		mainPanelListe = new JPanel(new BorderLayout()); 
 		mainPanelListe.setBackground(new Color(240, 240, 240));
 		mainPanelListe.setBorder(BorderFactory.createEmptyBorder(70, 10, 10, 10));
 		model = new RendezvousListeModel();
@@ -44,7 +44,7 @@ public class RendezvousListeView extends JPanel {
 		JLabel titleLabel = new JLabel("<html><u>Appointments List</u></html>");
 		titleLabel.setFont(new Font("Arial", Font.BOLD, 25));
 		titleLabel.setForeground(Color.red);
-		titlePanel.add(titleLabel, BorderLayout.WEST); // Add title label to the left of titlePanel
+		titlePanel.add(titleLabel, BorderLayout.WEST);
 
 		// Add button
 		JButton addButton = new JButton("+ Add Appointment");
@@ -53,12 +53,12 @@ public class RendezvousListeView extends JPanel {
 		addButton.setForeground(Color.WHITE);
 		addButton.setFocusPainted(false);
 		addButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		addButton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
-		titlePanel.add(addButton, BorderLayout.EAST); // Add add button to the right of titlePanel
-
-		titlePanel.setBorder(BorderFactory.createEmptyBorder(0, 15, 0, 15)); // Add padding to titlePanel
-
-		mainPanelListe.add(titlePanel, BorderLayout.NORTH); // Add titlePanel to the NORTH of mainPanelListe
+		addButton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); 
+		
+		titlePanel.add(addButton, BorderLayout.EAST); 
+		titlePanel.setBorder(BorderFactory.createEmptyBorder(0, 15, 0, 15));
+		
+		mainPanelListe.add(titlePanel, BorderLayout.NORTH);
 
 		// Table panel
 		JPanel tablePanel = new JPanel(new BorderLayout());
@@ -70,6 +70,7 @@ public class RendezvousListeView extends JPanel {
 				return false; // Make cells non-editable
 			}
 		};
+		
 		// Création du modèle de tableau avec des noms de colonnes en anglais
 		tableModel.addColumn("ID");
 		tableModel.addColumn("Last Name");
@@ -90,11 +91,10 @@ public class RendezvousListeView extends JPanel {
 		// Customizing table appearance...
 		JScrollPane scrollPane = new JScrollPane(AppointmentsList);
 		scrollPane.setBorder(BorderFactory.createEmptyBorder(40, 10, 10, 10));
-		mainPanelListe.add(scrollPane, BorderLayout.CENTER); // Add scrollPane to the CENTER of mainPanelListe
-
-		// Buttons panel
+		mainPanelListe.add(scrollPane, BorderLayout.CENTER);
+		
 		JPanel buttonsPanel = new JPanel(new FlowLayout());
-		// buttonsPanel.setBackground(Color.WHITE);
+
 		buttonsPanel.setBorder(BorderFactory.createEmptyBorder(50, 0, 40, 0));
 		JButton updateButton = new JButton("Update");
 		updateButton.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -112,7 +112,7 @@ public class RendezvousListeView extends JPanel {
 		deleteButton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
 		buttonsPanel.add(updateButton);
 		buttonsPanel.add(deleteButton);
-		mainPanelListe.add(buttonsPanel, BorderLayout.SOUTH); // Add buttonsPanel to the SOUTH of mainPanelListe
+		mainPanelListe.add(buttonsPanel, BorderLayout.SOUTH); 
 
 		addButton.addActionListener(new ActionListener() {
 			@Override
@@ -123,15 +123,15 @@ public class RendezvousListeView extends JPanel {
 				// taille de la fenêtre
 				addAppointmentFrame.setMinimumSize(new Dimension(500, 300));
 				addAppointmentFrame.setUndecorated(true);
-				addAppointmentFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Fermer uniquement la fenêtre
-																						// actuelle
-				// Définir la couleur de fond du formulaire en blanc
+				addAppointmentFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
+				
+				
 				addAppointmentFrame.getContentPane().setBackground(Color.WHITE);
 
 				addAppointmentFrame.getRootPane()
 						.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, new Color(63, 81, 181)));
 
-				// Ajouter des marges au contenu de la fenêtre
+				
 				((JComponent) addAppointmentFrame.getContentPane())
 						.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
@@ -270,21 +270,12 @@ public class RendezvousListeView extends JPanel {
 					// la taille de la fenêtre
 					updateAppointmentFrame.setMinimumSize(new Dimension(500, 300));
 					updateAppointmentFrame.setUndecorated(true);
-					updateAppointmentFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Fermer uniquement la
-																								// fenêtre actuelle
-					updateAppointmentFrame.getContentPane().setBackground(Color.WHITE); // Définir la couleur de fond du
-																						// formulaire en blanc
+					updateAppointmentFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
+					updateAppointmentFrame.getContentPane().setBackground(Color.WHITE); 
 					updateAppointmentFrame.getRootPane()
-							.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, new Color(63, 81, 181))); // Ajouter
-																												// des
-																												// marges
-																												// au
-																												// contenu
-																												// de la
-																												// fenêtre
+							.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, new Color(63, 81, 181))); 
 					((JComponent) updateAppointmentFrame.getContentPane())
-							.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Ajouter des marges au
-																							// contenu de la fenêtre
+							.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); 
 
 					// Création des composants du formulaire
 					JLabel nomLabel = new JLabel("Last Name: ");
@@ -292,14 +283,14 @@ public class RendezvousListeView extends JPanel {
 					JTextField nomField = new JTextField();
 					nomField.setFont(new Font("Arial", Font.PLAIN, 16));
 					nomField.setPreferredSize(new Dimension(nomField.getPreferredSize().width, 30));
-					nomField.setText(nom); // Remplir le champ avec la valeur existante
+					nomField.setText(nom); 
 
 					JLabel prenomLabel = new JLabel("First Name: ");
 					prenomLabel.setFont(new Font("Arial", Font.BOLD, 17));
 					JTextField prenomField = new JTextField(20);
 					prenomField.setFont(new Font("Arial", Font.PLAIN, 16));
 					prenomField.setPreferredSize(new Dimension(nomField.getPreferredSize().width, 30));
-					prenomField.setText(prenom); // Remplir le champ avec la valeur existante
+					prenomField.setText(prenom); 
 
 					JLabel groupeSanguinLabel = new JLabel("Blood Group: ");
 					groupeSanguinLabel.setFont(new Font("Arial", Font.BOLD, 17));
@@ -308,8 +299,7 @@ public class RendezvousListeView extends JPanel {
 					groupeSanguinComboBox.setFont(new Font("Arial", Font.PLAIN, 16));
 					groupeSanguinComboBox.setForeground(Color.BLACK);
 					groupeSanguinComboBox.setBackground(Color.WHITE);
-					groupeSanguinComboBox.setSelectedItem(groupeSanguin); // Sélectionner la valeur existante dans la
-																			// liste déroulante
+					groupeSanguinComboBox.setSelectedItem(groupeSanguin); 
 					
 					JLabel dateRendezVousLabel = new JLabel("Date of Appointment: ");
 					dateRendezVousLabel.setFont(new Font("Arial", Font.BOLD, 17));
@@ -319,10 +309,6 @@ public class RendezvousListeView extends JPanel {
 					dateRendezVousSpinner.setEditor(dateEditor);
 		            dateRendezVousSpinner.setValue(Date.from(dateRendezvous.atStartOfDay(ZoneId.systemDefault()).toInstant()));
 
-					/*JTextField dateRendezVousField = new JTextField(20);
-					dateRendezVousLabel.setFont(new Font("Arial", Font.BOLD, 17));
-					dateRendezVousField.setText(dateRendezvous.toString()); // Afficher la date existante
-*/
 					JLabel heureRendezVousLabel = new JLabel("Time of Appointment: ");
 					heureRendezVousLabel.setFont(new Font("Arial", Font.BOLD, 17));
 					SpinnerDateModel heureModel = new SpinnerDateModel();
@@ -331,10 +317,6 @@ public class RendezvousListeView extends JPanel {
 					heureRendezVousSpinner.setEditor(heureEditor);
 		            heureRendezVousSpinner.setValue(Date.from(heureRendezvous.atDate(LocalDate.now()).atZone(ZoneId.systemDefault()).toInstant()));
 
-					/*JTextField heureRendezVousField = new JTextField(20);
-					heureRendezVousField.setText(heureRendezvous.toString()); // Afficher l'heure existante
-*/
-					// Ajout d'un bouton "Update" pour mettre à jour le rendez-vous
 					
 					JButton updateButton = createButton("Save");
 					JButton cancelButton = createButton("Cancel");
@@ -377,7 +359,7 @@ public class RendezvousListeView extends JPanel {
 								// Mettre à jour les données dans la base de données
 								RendezvousListeModel rendezvousModel = new RendezvousListeModel();
 								RendezVousListe rendezvousToUpdate = new RendezVousListe();
-								rendezvousToUpdate.setId(id); // Récupérer l'ID du rendez-vous à partir de la table
+								rendezvousToUpdate.setId(id); 
 								rendezvousToUpdate.setNom(newNom);
 								rendezvousToUpdate.setPrenom(newPrenom);
 								rendezvousToUpdate.setGroupeSanguin(newGroupeSanguin);
@@ -443,10 +425,9 @@ public class RendezvousListeView extends JPanel {
 							"Are you sure you want to delete this entry?", "Delete Confirmation",
 							JOptionPane.YES_NO_OPTION);
 					if (confirm == JOptionPane.YES_OPTION) {
-						int rendezvousID = (int) tableModel.getValueAt(selectedRow, 0); // Supposons que la colonne 0
-																						// contient l'ID du rendez-vous
-						model.deleteRendezvous(rendezvousID); // Suppression du rendez-vous de la base de données
-						tableModel.removeRow(selectedRow); // Suppression du rendez-vous de la liste
+						int rendezvousID = (int) tableModel.getValueAt(selectedRow, 0); 
+						model.deleteRendezvous(rendezvousID); 
+						tableModel.removeRow(selectedRow); 
 					}
 				} else {
 					JOptionPane.showMessageDialog(RendezvousListeView.this, "Please select a row to delete.", "Error",
@@ -455,7 +436,7 @@ public class RendezvousListeView extends JPanel {
 			}
 		});
 
-		add(mainPanelListe, BorderLayout.CENTER); // Add mainPanelListe to the JPanel (this)
+		add(mainPanelListe, BorderLayout.CENTER); 
 	}
 
 	public JPanel getMainPanel() {

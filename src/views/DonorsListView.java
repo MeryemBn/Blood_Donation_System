@@ -34,7 +34,7 @@ public class DonorsListView extends JFrame {
 		super("Donors List");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(844, 660);
-		setLocationRelativeTo(null); // Center the frame on the screen
+		setLocationRelativeTo(null);
 
 		// Create a panel with grey background and BorderLayout
 		mainPanel = new JPanel(new BorderLayout());
@@ -52,6 +52,7 @@ public class DonorsListView extends JFrame {
 		titleLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		titlePanel.add(titleLabel, BorderLayout.WEST);
 		titlePanel.setBorder(BorderFactory.createEmptyBorder(0, 15, 0, 15));
+
 		// Create a button and add it to the right
 		addButton = createButton("+ New Donor");
 
@@ -71,7 +72,9 @@ public class DonorsListView extends JFrame {
 		tableModel.addColumn("Phone Number");
 
 		donorTable = new JTable(tableModel);
-		donorTable.setDefaultEditor(Object.class, null); // Make the table non-editable
+
+		// Make the table non-editable
+		donorTable.setDefaultEditor(Object.class, null);
 
 		// Disable selection
 		donorTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -85,7 +88,7 @@ public class DonorsListView extends JFrame {
 		header.setFont(new Font("Arial", Font.PLAIN, 18));
 		donorTable.setRowHeight(30);
 		donorTable.setFont(new Font("Arial", Font.PLAIN, 16));
-		scrollPane.setBorder(BorderFactory.createEmptyBorder(40, 10, 10, 10)); // Add padding around the table
+		scrollPane.setBorder(BorderFactory.createEmptyBorder(40, 10, 10, 10));
 
 		// Add table panel to main panel
 		mainPanel.add(scrollPane, BorderLayout.CENTER);
@@ -124,7 +127,7 @@ public class DonorsListView extends JFrame {
 
 	public void displayDonors(List<Donor> donors) {
 		DefaultTableModel model = (DefaultTableModel) donorTable.getModel();
-		model.setRowCount(0); // Clear existing rows
+		model.setRowCount(0);
 
 		// Populate the table with data from the list of donors
 		for (Donor donor : donors) {

@@ -47,12 +47,12 @@ public class BloodGroupListModel {
         Connection conn = null;
         PreparedStatement stmt = null;
         try {
-            conn = DBConnection.getConnection(); // Get a connection to the database
+            conn = DBConnection.getConnection(); 
             String sql = "UPDATE pack_disponible SET qte = ? WHERE groupe_sanguin = ?";
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, pack.getQuantity());
             stmt.setString(2, pack.getBloodGroup());
-            stmt.executeUpdate(); // Execute the SQL query to update the record
+            stmt.executeUpdate(); 
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

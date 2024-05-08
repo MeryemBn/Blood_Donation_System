@@ -30,7 +30,7 @@ public class EditPackView extends JFrame {
         setSize(500, 300);
         setUndecorated(true);
         setLocationRelativeTo(null);
-        getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, new Color(63, 81, 181))); // Ajouter des marges au contenu de la fenêtre
+        getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, new Color(63, 81, 181))); 
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         updateButton = new JButton("Update");

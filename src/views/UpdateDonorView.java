@@ -31,7 +31,6 @@ public class UpdateDonorView extends JFrame {
 	JTextField phoneNumberField;
 
 	JComboBox<String> bloodGroupComboBox;
-	// Define an array of blood types
 	String[] bloodTypes = { "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" };
 
 	public UpdateDonorView() {

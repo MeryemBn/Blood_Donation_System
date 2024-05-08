@@ -79,7 +79,6 @@ public class DonorsListModel {
 
 		try (Connection connection = DBConnection.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-			// Set parameters
 			preparedStatement.setString(1, fullName);
 			preparedStatement.setString(2, bloodGroup);
 			preparedStatement.setString(3, gender);
@@ -88,7 +87,6 @@ public class DonorsListModel {
 			preparedStatement.setLong(6, phoneNumber);
 			preparedStatement.setInt(7, id);
 
-			// Execute the update
 			int rowsUpdated = preparedStatement.executeUpdate();
 
 			// Return true if update was successful, false otherwise
@@ -96,7 +94,7 @@ public class DonorsListModel {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false; // Return false if an exception occurs
+			return false; 
 		}
 	}
 }

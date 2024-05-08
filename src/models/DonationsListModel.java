@@ -24,7 +24,6 @@ public class DonationsListModel {
 						donation.setTime(resultSet.getString("heure"));
 						donation.setAmountDonated(resultSet.getInt("qte_donnee"));
 						donations.add(donation);
-
 					}
 				}
 			}

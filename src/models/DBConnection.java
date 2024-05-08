@@ -13,7 +13,7 @@ public class DBConnection {
             return DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
             e.printStackTrace();
-            return null; // Return null if connection fails
+            return null;
         }
     }
 }

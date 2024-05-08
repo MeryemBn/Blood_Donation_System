@@ -113,40 +113,55 @@ public class DonorsListController implements ActionListener {
 	}
 
 	public void onAddButtonClicked() {
-		// Check if any field is empty
-		if (addView.getFullNameField().getText().isEmpty() || addView.getAgeField().getText().isEmpty()
-				|| addView.getAddressField().getText().isEmpty() || addView.getPhoneNumberField().getText().isEmpty()) {
-			JOptionPane.showMessageDialog(addView, "All fields are required.", "Missing Information",
-					JOptionPane.ERROR_MESSAGE);
-		} else {
+	    // Check if any field is empty
+	    if (addView.getFullNameField().getText().isEmpty() || addView.getAgeField().getText().isEmpty()
+	            || addView.getAddressField().getText().isEmpty() || addView.getPhoneNumberField().getText().isEmpty()) {
+	        JOptionPane.showMessageDialog(addView, "All fields are required.", "Missing Information",
+	                JOptionPane.ERROR_MESSAGE);
+	    } else {
+	        // Check if age is a number
+	        try {
+	            int age = Integer.parseInt(addView.getAgeField().getText());
+	        } catch (NumberFormatException e) {
+	            JOptionPane.showMessageDialog(addView, "Age must be a number.", "Error", JOptionPane.ERROR_MESSAGE);
+	            return; // Stop further execution if age is not a number
+	        }
 
-			String gender = "";
-			if (addView.getFemaleRadioButton().isSelected()) {
-				gender = "Female";
-			} else if (addView.getMaleRadioButton().isSelected()) {
-				gender = "Male";
-			}
+	        // Check if phone number is a number
+	        try {
+	            long phoneNumber = Long.parseLong(addView.getPhoneNumberField().getText());
+	        } catch (NumberFormatException e) {
+	            JOptionPane.showMessageDialog(addView, "Phone number must be a number.", "Error", JOptionPane.ERROR_MESSAGE);
+	            return; // Stop further execution if phone number is not a number
+	        }
 
-			// Insert data into the database
-			boolean inserted = model.insertDonor(addView.getFullNameField().getText(),
-					(String) addView.getBloodGroupComboBox().getSelectedItem(), gender,
-					Integer.parseInt(addView.getAgeField().getText()), addView.getAddressField().getText(),
-					Long.parseLong(addView.getPhoneNumberField().getText()));
+	        String gender = "";
+	        if (addView.getFemaleRadioButton().isSelected()) {
+	            gender = "Female";
+	        } else if (addView.getMaleRadioButton().isSelected()) {
+	            gender = "Male";
+	        }
 
-			if (inserted) {
-				JOptionPane.showMessageDialog(addView, "Donor added successfully!", "Success",
-						JOptionPane.INFORMATION_MESSAGE);
+	        // Insert data into the database
+	        boolean inserted = model.insertDonor(addView.getFullNameField().getText(),
+	                (String) addView.getBloodGroupComboBox().getSelectedItem(), gender,
+	                Integer.parseInt(addView.getAgeField().getText()), addView.getAddressField().getText(),
+	                Long.parseLong(addView.getPhoneNumberField().getText()));
 
-				initAddView();
-				addView.dispose();
+	        if (inserted) {
+	            JOptionPane.showMessageDialog(addView, "Donor added successfully!", "Success",
+	                    JOptionPane.INFORMATION_MESSAGE);
 
-				// Create a new instance of DashboardView and update its data
-			} else {
-				JOptionPane.showMessageDialog(addView, "Failed to add donor.", "Error", JOptionPane.ERROR_MESSAGE);
-			}
+	            initAddView();
+	            addView.dispose();
 
-			initView();
-		}
+	            // Create a new instance of DashboardView and update its data
+	        } else {
+	            JOptionPane.showMessageDialog(addView, "Failed to add donor.", "Error", JOptionPane.ERROR_MESSAGE);
+	        }
+
+	        initView();
+	    }
 	}
 
 	public void onDeleteButtonClicked() {

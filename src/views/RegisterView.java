@@ -89,7 +89,7 @@ public class RegisterView extends JFrame {
         String[] groupeSanguinOptions = {"A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"};
         groupeSanguinComboBox = new JComboBox<>(groupeSanguinOptions);
         groupeSanguinComboBox.setFont(new Font("Dubai", Font.ITALIC, 16));
-        JLabel sexLabel = new JLabel("Sex:");
+        JLabel sexLabel = new JLabel("Gender:");
         sexLabel.setFont(new Font("Dubai", Font.ITALIC|Font.BOLD, 16)); 
         maleRadioButton = new JRadioButton("Male");
         maleRadioButton.setFont(new Font("Dubai", Font.ITALIC, 16));

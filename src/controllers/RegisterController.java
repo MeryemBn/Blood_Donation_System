@@ -27,29 +27,45 @@ public class RegisterController implements ActionListener{
                 // Get values from text fields
                 String nom = registerView.getNomField().getText().trim();
                 String groupeSanguin = (String) registerView.getGroupeSanguinComboBox().getSelectedItem();
-                String sex = registerView.getMaleRadioButton().isSelected() ? "Male" : "Female";
+                String sex = "";
+                if (registerView.getMaleRadioButton().isSelected()) {
+                    sex = "Male";
+                } else if (registerView.getFemaleRadioButton().isSelected()) {
+                    sex = "Female";
+                } else {
+                	 JOptionPane.showMessageDialog(registerView, "Please select a gender", "Error", JOptionPane.ERROR_MESSAGE);
+                    return; 
+                }
                 String ageText = registerView.getAgeField().getText().trim();
                 String adresse = registerView.getAdresseField().getText().trim();
                 String numTel = registerView.getNumTelField().getText().trim();
                 String username = registerView.getUsernameField().getText().trim();
                 String password = new String(registerView.getPasswordField().getPassword());
 
-                // Check if any field is empty
                 if (nom.isEmpty() || ageText.isEmpty() || adresse.isEmpty() || numTel.isEmpty() || username.isEmpty() || password.isEmpty()) {
                     JOptionPane.showMessageDialog(registerView, "Please fill in all fields.");
-                    return; // Exit the method if any field is empty
+                    return; 
                 }
 
-                // Convert age to integer
                 int age = 0;
                 try {
                     age = Integer.parseInt(ageText);
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(registerView, "Please enter a valid age.");
-                    return; // Exit the method if age is not a valid integer
+                    JOptionPane.showMessageDialog(registerView, "Please enter a valid age.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return; 
+                }
+                if (age < 18) {
+                    JOptionPane.showMessageDialog(registerView, "You must be at least 18 years old to register.");
+                    return; // Exit the method if age is less than 18
                 }
 
-                // Create Donneur object and save to database
+                try {
+                    long phoneNumber = Long.parseLong(numTel);
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(registerView, "Please enter a valid phone number.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return; 
+                }
+
                 RegisterModel model = new RegisterModel();
                 model.setNom(nom);
                 model.setGroupeSanguin(groupeSanguin);
@@ -67,16 +83,16 @@ public class RegisterController implements ActionListener{
                     LoginModel loginmodel = new LoginModel();
                     new LoginController(loginview,loginmodel);
                 } else {
-                    JOptionPane.showMessageDialog(registerView, "Error occurred while registering. Please try again.");
+                    JOptionPane.showMessageDialog(registerView, "Error occurred while registering. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-            }else if(e.getSource() == registerView.getBackButton()) {
-    			Acceuil acc = new Acceuil();
-    			acc.setVisible();
-    			AcceuilController accController = new AcceuilController(acc);
-    			registerView.dispose();
-    		}else if (e.getSource() == registerView.getCloseButton()) {
-    			System.exit(0); 
-    		}
+            } else if(e.getSource() == registerView.getBackButton()) {
+                Acceuil acc = new Acceuil();
+                acc.setVisible();
+                AcceuilController accController = new AcceuilController(acc);
+                registerView.dispose();
+            } else if (e.getSource() == registerView.getCloseButton()) {
+                System.exit(0); 
+            }
         }
-    
+
 }

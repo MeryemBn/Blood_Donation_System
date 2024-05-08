@@ -22,6 +22,10 @@ public class DashboardView extends JFrame {
     private JPanel mainPanel;
     private JPanel chartPanelContainer;
     private DashboardModel model;
+    private int donneurCount ;
+    private int donationCount;
+    private int rendezvousCount;
+    private int packCount;
 
     public DashboardView() {
         setTitle("Dashboard");
@@ -39,17 +43,20 @@ public class DashboardView extends JFrame {
 
         // Create cards for each table
         JPanel gridPanel = new JPanel(new GridLayout(2, 2));
-        gridPanel.setBorder(BorderFactory.createEmptyBorder(50, 180, 50, 180)); // Add padding
+        gridPanel.setPreferredSize(new Dimension(100,350));
+       gridPanel.setBorder(BorderFactory.createEmptyBorder(80, 180, 40, 180)); // Add padding
+       gridPanel.setBackground(Color.WHITE);
+       
 
         // Add border to each card
-        Border cardBorder = BorderFactory.createLineBorder(Color.BLACK);
-        gridPanel.setBorder(BorderFactory.createCompoundBorder(cardBorder, gridPanel.getBorder())); // Add border
+       /* Border cardBorder = BorderFactory.createLineBorder(Color.BLACK);
+        gridPanel.setBorder(BorderFactory.createCompoundBorder(cardBorder, gridPanel.getBorder())); // Add border*/
 
         // Retrieve counts for each table
-        int donneurCount = model.getCount("donneur");
-        int donationCount = model.getCount("historiquedonation");
-        int rendezvousCount = model.getCount("rendezvous");
-        int packCount = model.getCount("pack_disponible");
+         donneurCount = model.getCount("donneur");
+         donationCount = model.getCount("historiquedonation");
+         rendezvousCount = model.getCount("rendezvous");
+         packCount = model.getCount("pack_disponible");
 
         // Create icons for each card
         ImageIcon donneurIcon = new ImageIcon(getClass().getResource("/images/donor.png"));
@@ -58,10 +65,10 @@ public class DashboardView extends JFrame {
         ImageIcon packIcon = new ImageIcon(getClass().getResource("/images/blood.png"));
 
         // Create and add labels to the grid panel
-        donneurLabel = createCard("Donneur", donneurCount, donneurIcon);
+        donneurLabel = createCard("Donor", donneurCount, donneurIcon);
         donationLabel = createCard("Donation History", donationCount, donationIcon);
-        rendezvousLabel = createCard("Rendezvous", rendezvousCount, rendezvousIcon);
-        packLabel = createCard("Pack Disponible", packCount, packIcon);
+        rendezvousLabel = createCard("Appointement", rendezvousCount, rendezvousIcon);
+        packLabel = createCard("Blood Group", packCount, packIcon);
 
         gridPanel.add(donneurLabel);
         gridPanel.add(donationLabel);
@@ -102,6 +109,9 @@ public class DashboardView extends JFrame {
 
         PieSectionLabelGenerator labelGenerator = new StandardPieSectionLabelGenerator("{0}: {2}");
         ((PiePlot) chart.getPlot()).setLabelGenerator(labelGenerator);
+        PiePlot plot = (PiePlot) chart.getPlot();
+        plot.setBackgroundPaint(Color.WHITE); // Set background color of the chart
+        plot.setOutlineStroke(null);
 
         return chart;
     }
@@ -110,11 +120,28 @@ public class DashboardView extends JFrame {
         JLabel cardLabel = new JLabel("<html><center>" + title + "<br>" + count + "</center></html>", icon, JLabel.CENTER);
         cardLabel.setHorizontalAlignment(JLabel.CENTER);
         cardLabel.setVerticalAlignment(JLabel.CENTER);
+        cardLabel.setFont(new Font("Arial", Font.BOLD, 22));
         cardLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         return cardLabel;
     }
     public JPanel getMainPanel() {
 		return mainPanel;
 	}
+    public void updateData(int donneurCount, int donationCount, int rendezvousCount, int packCount, DefaultPieDataset dataset) {
+    	this.donneurCount=donneurCount;
+    	this.donationCount=donationCount;
+    	this.rendezvousCount=rendezvousCount;
+    	this.packCount=packCount;
+    	
+    	JFreeChart chart = createChart(dataset);
+        ChartPanel newChartPanel = new ChartPanel(chart);
+        chartPanelContainer.removeAll();
+        chartPanelContainer.add(newChartPanel, BorderLayout.CENTER);
 
-} 
+        // Refresh the view
+        revalidate();
+        repaint();
+
+    }
+
+}

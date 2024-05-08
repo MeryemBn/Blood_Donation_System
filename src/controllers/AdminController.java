@@ -1,16 +1,27 @@
 package controllers;
 
 import java.awt.event.ActionEvent;
+
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+
+import models.DashboardModel;
 import models.LoginModel;
 import controllers.LoginController;
 import views.AdminView;
+import views.DashboardView;
+
 import views.Login;
 
 public class AdminController implements ActionListener {
     private AdminView adminview;
     private Login loginview;
+    private DashboardView dashboardView;
 
     public AdminController(AdminView view) {
         this.adminview = view;
@@ -23,9 +34,8 @@ public class AdminController implements ActionListener {
         view.getButton5().addActionListener(this);
         view.getCloseButton().addActionListener(this);
         view.getLogoutButton().addActionListener(this);
-        view.buttonClicked(view.getButton1());
+        view.buttonClicked(view.getButton1());  
     }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == adminview.getButton1()) {
@@ -35,6 +45,13 @@ public class AdminController implements ActionListener {
         	adminview.buttonReleased(adminview.getButton3());
         	adminview.buttonReleased(adminview.getButton4());
         	adminview.buttonReleased(adminview.getButton5());
+        	 DashboardView dashboardView = new DashboardView();
+             DashboardController dashCon = new DashboardController(dashboardView,new DashboardModel());
+             JTabbedPane tabbedPane =adminview.getTabbedPane();
+             tabbedPane.setComponentAt(0,dashboardView.getMainPanel() );
+     		dashCon.updateData();
+     		//dashboardView.setVisible(true);
+        	 
         } else if (e.getSource() == adminview.getButton2()) {
         	adminview.getTabbedPane().setSelectedIndex(1); // Afficher le deuxième onglet
         	adminview.buttonClicked(adminview.getButton2());

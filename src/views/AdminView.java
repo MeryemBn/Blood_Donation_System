@@ -74,7 +74,7 @@ public class AdminView extends JFrame {
 		frame = new JFrame("Accueil Admin");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setUndecorated(true);
-		frame.setSize(1540, 830);
+		frame.setSize(1540, 810);
 		
 		// Create a panel for the title bar
 		titlePanel = new JPanel();

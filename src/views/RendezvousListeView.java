@@ -212,6 +212,8 @@ public class RendezvousListeView extends JPanel {
 							model.updateRendezvousList(tableModel);
 							nomField.setText(null);
 							prenomField.setText(null);
+							JOptionPane.showMessageDialog(addAppointmentFrame, "Appointment added successfully", "Success",
+									JOptionPane.INFORMATION_MESSAGE);
 	
 						}
 					}
@@ -428,6 +430,8 @@ public class RendezvousListeView extends JPanel {
 						int rendezvousID = (int) tableModel.getValueAt(selectedRow, 0); 
 						model.deleteRendezvous(rendezvousID); 
 						tableModel.removeRow(selectedRow); 
+						JOptionPane.showMessageDialog(RendezvousListeView.this,"Appointment deleted successfully", "Success",
+								JOptionPane.INFORMATION_MESSAGE);
 					}
 				} else {
 					JOptionPane.showMessageDialog(RendezvousListeView.this, "Please select a row to delete.", "Error",

@@ -24,6 +24,7 @@ public class DonationsListModel {
 						donation.setTime(resultSet.getString("heure"));
 						donation.setAmountDonated(resultSet.getInt("qte_donnee"));
 						donations.add(donation);
+
 					}
 				}
 			}
@@ -110,44 +111,107 @@ public class DonationsListModel {
 		return donorId;
 	}
 
-	public boolean insertDonation(String donorName, String donationDate, String bloodGroup, int amount) {
+	public boolean insertDonationAndUpdateQuantity(String donorName, String donationDate, String bloodGroup,
+			int amount) {
 		try (Connection conn = DBConnection.getConnection()) {
-			String sql = "INSERT INTO historiquedonation (groupe_sanguin, donneur, date, qte_donnee) VALUES (?, ?, ?, ?)";
-			try (PreparedStatement statement = conn.prepareStatement(sql)) {
+			conn.setAutoCommit(false); // Start transaction
 
+			// Step 1: Insert into historiquedonation table
+			String insertDonationSql = "INSERT INTO historiquedonation (groupe_sanguin, donneur, date, qte_donnee) VALUES (?, ?, ?, ?)";
+			try (PreparedStatement insertDonationStatement = conn.prepareStatement(insertDonationSql)) {
 				// Retrieve donor ID based on the donor name
 				int donorId = getDonorIdByName(donorName);
 
-				statement.setString(1, bloodGroup);
-				statement.setInt(2, donorId);
-				statement.setString(3, donationDate);
-				statement.setInt(4, amount);
+				insertDonationStatement.setString(1, bloodGroup);
+				insertDonationStatement.setInt(2, donorId);
+				insertDonationStatement.setString(3, donationDate);
+				insertDonationStatement.setInt(4, amount);
 
-				// Execute the SQL statement
-				int rowsAffected = statement.executeUpdate();
-				return rowsAffected > 0; // Return true if insertion was successful
+				// Execute the insertion into historiquedonation table
+				int rowsAffected = insertDonationStatement.executeUpdate();
+
+				if (rowsAffected <= 0) {
+					conn.rollback(); // Rollback transaction if insertion fails
+					return false;
+				}
 			}
+
+			// Step 2: Update qte in pack_disponible table
+			String updateQteSql = "UPDATE pack_disponible SET qte = qte + ? WHERE groupe_sanguin = ?";
+			try (PreparedStatement updateQteStatement = conn.prepareStatement(updateQteSql)) {
+				updateQteStatement.setInt(1, amount);
+				updateQteStatement.setString(2, bloodGroup);
+
+				// Execute the update statement
+				int rowsUpdated = updateQteStatement.executeUpdate();
+
+				if (rowsUpdated <= 0) {
+					conn.rollback(); // Rollback transaction if update fails
+					return false;
+				}
+			}
+
+			conn.commit(); // Commit transaction if all operations are successful
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
 
-	public boolean updateDonation(int donationId, String donationDate, int quantityGiven) {
+	public boolean updateDonationAndUpdateQuantity(int donationId, String donationDate, int oldQuantityGiven,
+			int newQuantityGiven) {
 		try (Connection conn = DBConnection.getConnection()) {
-			String sql = "UPDATE historiquedonation SET date = ?, qte_donnee = ? WHERE id = ?";
-			try (PreparedStatement statement = conn.prepareStatement(sql)) {
-				statement.setString(1, donationDate);
-				statement.setInt(2, quantityGiven);
-				statement.setInt(3, donationId);
-				// Execute the SQL statement
-				int rowsAffected = statement.executeUpdate();
-				return rowsAffected > 0;
+			conn.setAutoCommit(false); // Start transaction
+
+			// Step 1: Update historiquedonation table
+			String updateDonationSql = "UPDATE historiquedonation SET date = ?, qte_donnee = ? WHERE id = ?";
+			String bloodGroupSql = "SELECT groupe_sanguin FROM historiquedonation WHERE id = ?";
+			String updateQteSql = "UPDATE pack_disponible SET qte = qte + ? WHERE groupe_sanguin = ?";
+
+			try (PreparedStatement updateDonationStatement = conn.prepareStatement(updateDonationSql);
+					PreparedStatement bloodGroupStatement = conn.prepareStatement(bloodGroupSql);
+					PreparedStatement updateQteStatement = conn.prepareStatement(updateQteSql)) {
+
+				// Update donation
+				updateDonationStatement.setString(1, donationDate);
+				updateDonationStatement.setInt(2, newQuantityGiven);
+				updateDonationStatement.setInt(3, donationId);
+
+				// Execute the update statement
+				int rowsAffected = updateDonationStatement.executeUpdate();
+				if (rowsAffected <= 0) {
+					conn.rollback(); // Rollback transaction if update fails
+					return false;
+				}
+
+				// Update qte in pack_disponible table
+				bloodGroupStatement.setInt(1, donationId);
+				ResultSet resultSet = bloodGroupStatement.executeQuery();
+				if (resultSet.next()) {
+					String bloodGroup = resultSet.getString("groupe_sanguin");
+					int qteDifference = newQuantityGiven - oldQuantityGiven;
+					updateQteStatement.setInt(1, qteDifference);
+					updateQteStatement.setString(2, bloodGroup);
+
+					// Execute the update statement
+					int rowsUpdated = updateQteStatement.executeUpdate();
+					if (rowsUpdated <= 0) {
+						conn.rollback(); // Rollback transaction if update fails
+						return false;
+					}
+				} else {
+					conn.rollback(); // Rollback transaction if blood group not found
+					return false;
+				}
 			}
+
+			conn.commit(); // Commit transaction if all operations are successful
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
-
 		}
 	}
+
 }

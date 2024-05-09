@@ -65,8 +65,8 @@ public class AdminView extends JFrame {
 	private DonorsListController donorsListController;
 
 	private DonationsListView donationsListView;
-	private AddDonationsView adddonationView;
-	private UpdateDonationsView updatedonationView;
+	private AddDonationsView addDonationView;
+	private UpdateDonationsView updateDonationView;
 	private DonationsListModel donationsListModel;
 	private DonationsListController donationsListController;
 
@@ -75,7 +75,7 @@ public class AdminView extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setUndecorated(true);
 		frame.setSize(1540, 810);
-		
+
 		// Create a panel for the title bar
 		titlePanel = new JPanel();
 		titlePanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -175,11 +175,11 @@ public class AdminView extends JFrame {
 
 		// Add donations list
 		donationsListView = new DonationsListView();
-		adddonationView = new AddDonationsView();
-		updatedonationView = new UpdateDonationsView();
+		addDonationView = new AddDonationsView();
+		updateDonationView = new UpdateDonationsView();
 		donationsListModel = new DonationsListModel();
-		donationsListController = new DonationsListController(donationsListView, adddonationView, updatedonationView,
-				donationsListModel);
+		donationsListController = new DonationsListController(donationsListView, addDonationView, updateDonationView,
+				bloodView, bloodModel, donationsListModel);
 		tabbedPane.addTab("4", donationsListView.getMainPanel());
 
 		// Add appointment list

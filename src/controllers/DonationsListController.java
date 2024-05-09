@@ -8,9 +8,12 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 
+import models.BloodGroupListModel;
+import models.BloodListModel;
 import models.DonationHistory;
 import models.DonationsListModel;
 import views.AddDonationsView;
+import views.BloodGroupView;
 import views.DonationsListView;
 import views.UpdateDonationsView;
 
@@ -19,14 +22,20 @@ public class DonationsListController implements ActionListener {
 	private DonationsListModel model;
 	private AddDonationsView addDonation;
 	private UpdateDonationsView updateDonation;
+	private BloodGroupView bloodView;
+	private BloodGroupListModel modelBloodView;
 	int selectedId;
 
 	public DonationsListController(DonationsListView view, AddDonationsView AddDonation,
-			UpdateDonationsView updateDonation, DonationsListModel model) {
+			UpdateDonationsView updateDonation, BloodGroupView bloodView, BloodGroupListModel modelBloodView,
+			DonationsListModel model) {
 		this.view = view;
 		this.model = model;
 		this.addDonation = AddDonation;
 		this.updateDonation = updateDonation;
+		this.bloodView = bloodView;
+		this.modelBloodView = modelBloodView;
+
 		initView();
 
 		view.getAddButton().addActionListener(this);
@@ -44,7 +53,6 @@ public class DonationsListController implements ActionListener {
 		List<DonationHistory> donations = model.getAllDonations();
 		view.displayDonations(donations);
 	}
-
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -101,7 +109,7 @@ public class DonationsListController implements ActionListener {
 		}
 
 		// Insert the donation into the database
-		boolean success = model.updateDonation(selectedId, donationDate, amount);
+		boolean success = model.updateDonationAndUpdateQuantity(selectedId, donationDate, quantityGiven, amount);
 		if (success) {
 			// Display a success message if insertion is successful
 			JOptionPane.showMessageDialog(updateDonation, "Donation updated successfully", "Success",
@@ -109,6 +117,8 @@ public class DonationsListController implements ActionListener {
 
 			updateDonation.dispose();
 			initView();
+			// Update the table model in the BloodGroupView
+			bloodView.setTableModel(new BloodListModel(modelBloodView.getAllPacks()));
 		} else {
 			// Display an error message if insertion fails
 			JOptionPane.showMessageDialog(updateDonation, "Failed to update donation", "Error",
@@ -144,14 +154,16 @@ public class DonationsListController implements ActionListener {
 			return; // Exit the method
 		}
 
-		// Insert the donation into the database
-		boolean success = model.insertDonation(donorName, donationDate, bloodGroup, amount);
+		// Insert the donation into the database and update qte in pack_disponible table
+		boolean success = model.insertDonationAndUpdateQuantity(donorName, donationDate, bloodGroup, amount);
 		if (success) {
 			// Display a success message if insertion is successful
 			JOptionPane.showMessageDialog(addDonation, "Donation added successfully", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
 			addDonation.getAmountField().setText(null);
 			initView();
+			// Update the table model in the BloodGroupView
+			bloodView.setTableModel(new BloodListModel(modelBloodView.getAllPacks()));
 		} else {
 			// Display an error message if insertion fails
 			JOptionPane.showMessageDialog(addDonation, "Failed to add donation", "Error", JOptionPane.ERROR_MESSAGE);
@@ -161,6 +173,8 @@ public class DonationsListController implements ActionListener {
 	private void showAddDonationView() {
 		addDonation.setVisible(true);
 	}
+
+	int quantityGiven;
 
 	private void showUpdateDonationView() {
 		// Check if a row is selected
@@ -176,7 +190,7 @@ public class DonationsListController implements ActionListener {
 			Date donationDate = (Date) view.getDonationsTable().getValueAt(selectedRow, 1);
 			String donorName = (String) view.getDonationsTable().getValueAt(selectedRow, 2);
 			String bloodGroup = (String) view.getDonationsTable().getValueAt(selectedRow, 3);
-			int quantityGiven = (int) view.getDonationsTable().getValueAt(selectedRow, 4);
+			quantityGiven = (int) view.getDonationsTable().getValueAt(selectedRow, 4);
 
 			updateDonation.getDonorNameField().setText(donorName);
 			updateDonation.getBloodGroupField().setText(bloodGroup);

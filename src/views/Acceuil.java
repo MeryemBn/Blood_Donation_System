@@ -218,7 +218,7 @@ public class Acceuil {
 		CentreDeDonDeSangView centreView = centreController.getCentreDeDonDeSangView();
 
 		// Add CentreDeDonDeSangView to centrePanel
-		centrePanel.add(centreView, BorderLayout.CENTER);
+		//centrePanel.add(centreView, BorderLayout.CENTER);
 		
 		// Add centrePanel to mainpanel or any appropriate container in your layout
 		leftPanel.add(centrePanel, BorderLayout.SOUTH);

@@ -48,7 +48,6 @@ public class LoginController implements ActionListener {
 			}
 
 			if (model.authenticateUser(username, password, userType)) {
-				JOptionPane.showMessageDialog(loginview, "Login successful!");
 				loginview.setVisible(false);
 				if (userType.equals("Admin")) {
 					// If admin login is successful, create AdminView and AdminController

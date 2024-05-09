@@ -47,7 +47,7 @@ public class RendezvousListeView extends JPanel {
 		titlePanel.add(titleLabel, BorderLayout.WEST);
 
 		// Add button
-		JButton addButton = new JButton("+ Add Appointment");
+		JButton addButton = new JButton("+ New Appointment");
 		addButton.setFont(new Font("Arial", Font.PLAIN, 18));
 		addButton.setBackground(new Color(63, 81, 181));
 		addButton.setForeground(Color.WHITE);

@@ -77,7 +77,6 @@ public class RegisterController implements ActionListener{
                 model.setPassword(password);
 
                 if (model.save()) {
-                    JOptionPane.showMessageDialog(registerView, "Registration successful!");
                     registerView.dispose(); // Close the registration form after successful registration
                     Login loginview = new Login();
                     LoginModel loginmodel = new LoginModel();

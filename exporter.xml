@@ -1,0 +1,34 @@
+<rendezvous-list>
+  <rendezvous>
+    <id>2</id>
+    <nom>rais</nom>
+    <prenom>hiba</prenom>
+    <groupe_sanguin>A+</groupe_sanguin>
+    <date_rendezvous>2024-04-30</date_rendezvous>
+    <heure_rendezvous>15:04:51</heure_rendezvous>
+  </rendezvous>
+  <rendezvous>
+    <id>19</id>
+    <nom>benhadia</nom>
+    <prenom>meryem</prenom>
+    <groupe_sanguin>A+</groupe_sanguin>
+    <date_rendezvous>2024-05-02</date_rendezvous>
+    <heure_rendezvous>13:26:29</heure_rendezvous>
+  </rendezvous>
+  <rendezvous>
+    <id>20</id>
+    <nom>Saidi</nom>
+    <prenom>Zineb</prenom>
+    <groupe_sanguin>A+</groupe_sanguin>
+    <date_rendezvous>2024-05-02</date_rendezvous>
+    <heure_rendezvous>13:54:21</heure_rendezvous>
+  </rendezvous>
+  <rendezvous>
+    <id>21</id>
+    <nom>Elfillali</nom>
+    <prenom>Kawtar</prenom>
+    <groupe_sanguin>AB+</groupe_sanguin>
+    <date_rendezvous>2025-05-06</date_rendezvous>
+    <heure_rendezvous>17:42</heure_rendezvous>
+  </rendezvous>
+</rendezvous-list>

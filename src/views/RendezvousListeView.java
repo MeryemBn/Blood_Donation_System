@@ -1,6 +1,8 @@
 package views;
 
 import javax.swing.*;
+import java.io.File;
+
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -110,9 +112,17 @@ public class RendezvousListeView extends JPanel {
 		deleteButton.setFocusPainted(false);
 		deleteButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		deleteButton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+		JButton exportButton = new JButton("Export");
+		exportButton.setFont(new Font("Arial", Font.PLAIN, 18));
+		exportButton.setBackground(new Color(63, 81, 181));
+		exportButton.setForeground(Color.WHITE);
+		exportButton.setFocusPainted(false);
+		exportButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		exportButton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
 		buttonsPanel.add(updateButton);
 		buttonsPanel.add(deleteButton);
 		mainPanelListe.add(buttonsPanel, BorderLayout.SOUTH); 
+		
 
 		addButton.addActionListener(new ActionListener() {
 			@Override
@@ -439,9 +449,39 @@ public class RendezvousListeView extends JPanel {
 				}
 			}
 		});
+		
+		
+		
+		
+		exportButton.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        // Définir le nom de fichier par défaut
+		        String defaultFileName = "rendezvous.xml";
+		        // Créer un sélecteur de fichier avec le nom de fichier par défaut
+		        JFileChooser fileChooser = new JFileChooser();
+		        fileChooser.setSelectedFile(new File(defaultFileName));
+		        int returnValue = fileChooser.showSaveDialog(RendezvousListeView.this);
+		        if (returnValue == JFileChooser.APPROVE_OPTION) {
+		            String filePath = fileChooser.getSelectedFile().getPath();
+		            // Si l'utilisateur n'a pas spécifié d'extension, ajoutez .xml
+		            if (!filePath.toLowerCase().endsWith(".xml")) {
+		                filePath += ".xml";
+		            }
+		            // Exporter les rendez-vous vers le fichier XML
+		            model.exportRendezvousToXML(filePath);
+		            JOptionPane.showMessageDialog(RendezvousListeView.this, "Rendezvous exported successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+		        }
+		    }
+		});
+
+		buttonsPanel.add(exportButton);
+
 
 		add(mainPanelListe, BorderLayout.CENTER); 
 	}
+	
+	
 
 	public JPanel getMainPanel() {
 		return mainPanelListe;

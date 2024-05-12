@@ -214,15 +214,16 @@ public class Acceuil {
 		// Load data from XML file
 		centreController.chargerCentreDeDonDeSangDepuisXML(new File("centreDeDonDeSang.xml"));
 
-		// Retrieve CentreDeDonDeSang instance
+		//Retrieve CentreDeDonDeSang instance
 		CentreDeDonDeSangView centreView = centreController.getCentreDeDonDeSangView();
 
 		// Add CentreDeDonDeSangView to centrePanel
-		//centrePanel.add(centreView, BorderLayout.CENTER);
+		centrePanel.add(centreView, BorderLayout.CENTER);
+		
 		
 		// Add centrePanel to mainpanel or any appropriate container in your layout
 		leftPanel.add(centrePanel, BorderLayout.SOUTH);
-
+		leftPanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 50, 50));
 		// Center the frame on the screen
 		DraggableFrameUtil.makeDraggable(frame);
 		frame.setLocationRelativeTo(null);

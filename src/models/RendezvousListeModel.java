@@ -151,6 +151,12 @@ public class RendezvousListeModel {
             e.printStackTrace();
         }
     }
+    
+    public void exportRendezvousToXML(String filePath) {
+        List<RendezVousListe> rendezvousList = getRendezvousList();
+        XMLExporter.export(rendezvousList, filePath);
+    }
+
 
     public void closeConnection() {
         try {

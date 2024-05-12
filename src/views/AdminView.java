@@ -2,6 +2,7 @@ package views;
 
 import java.awt.BorderLayout;
 
+import models.XMLExporter;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -38,6 +39,8 @@ import models.RendezvousListeModel;
 import utils.DraggableFrameUtil;
 import views.RendezvousListeView;
 import controllers.RendezvousListeController;
+import models.RendezVousListe;
+
 
 public class AdminView extends JFrame {
 	private JFrame frame;
